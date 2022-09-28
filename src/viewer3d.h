@@ -17,5 +17,8 @@ public:
 
 private:
     Ui::Viewer3D *ui;
+
+private slots:
+    void load_file();
 };
 #endif // VIEWER3D_H
