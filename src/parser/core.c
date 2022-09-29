@@ -4,10 +4,10 @@
 
 #include "core.h"
 
-void parse_size_from_obj_file(FILE *file, object3_t* object3);
-void parse_data_from_obj_file(FILE *file, object3_t* object3);
-void parse_vertex3_from_obj_file(FILE *file, list_vertex3_t* list_vertex3);
-void parse_polygon_from_obj_file(FILE *file, list_polygon_t *list_polygon);
+void parse_size_from_obj_file(FILE* file, object3_t* object3);
+void parse_data_from_obj_file(FILE* file, object3_t* object3);
+void parse_vertex3_from_obj_file(FILE* file, list_vertex3_t* list_vertex3);
+void parse_polygon_from_obj_file(FILE* file, list_polygon_t* list_polygon);
 
 object3_t* parse_object3_from_obj_file(const char* filename) {
   FILE* file;

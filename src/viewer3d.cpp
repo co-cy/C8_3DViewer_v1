@@ -35,10 +35,10 @@ Viewer3D::Viewer3D(QWidget *parent)
 }
 
 Viewer3D::~Viewer3D() {
-    qDebug() << "FREE";
-    free_object3(current_obj3);
+  qDebug() << "FREE";
+  free_object3(current_obj3);
 
-    delete ui;
+  delete ui;
 }
 
 void Viewer3D::obj3_move_x(double new_x) {
@@ -54,64 +54,56 @@ void Viewer3D::obj3_move_x(double new_x) {
 void Viewer3D::obj3_move_y(double new_y) {
   if (this->current_obj3) {
     double shift = this->current_obj3->shift.y - new_y;
-    if (shift > 0.0001)
-      object3_move({0, shift, 0}, this->current_obj3);
+    if (shift > 0.0001) object3_move({0, shift, 0}, this->current_obj3);
   }
 }
 
 void Viewer3D::obj3_move_z(double new_z) {
   if (this->current_obj3) {
     double shift = this->current_obj3->shift.z - new_z;
-    if (shift > 0.0001)
-      object3_move({0, 0, shift}, this->current_obj3);
+    if (shift > 0.0001) object3_move({0, 0, shift}, this->current_obj3);
   }
 }
 
 void Viewer3D::obj3_rotate_x(double new_x) {
   if (this->current_obj3) {
     double shift = this->current_obj3->rotate.x - new_x;
-    if (shift > 0.0001)
-      object3_rotate({shift, 0, 0}, this->current_obj3);
+    if (shift > 0.0001) object3_rotate({shift, 0, 0}, this->current_obj3);
   }
 }
 
 void Viewer3D::obj3_rotate_y(double new_y) {
   if (this->current_obj3) {
     double shift = this->current_obj3->rotate.y - new_y;
-    if (shift > 0.0001)
-      object3_rotate({0, shift, 0}, this->current_obj3);
+    if (shift > 0.0001) object3_rotate({0, shift, 0}, this->current_obj3);
   }
 }
 
 void Viewer3D::obj3_rotate_z(double new_z) {
   if (this->current_obj3) {
     double shift = this->current_obj3->rotate.z - new_z;
-    if (shift > 0.0001)
-      object3_rotate({0, 0, shift}, this->current_obj3);
+    if (shift > 0.0001) object3_rotate({0, 0, shift}, this->current_obj3);
   }
 }
 
 void Viewer3D::obj3_scale_x(double new_x) {
   if (this->current_obj3) {
     double shift = new_x / this->current_obj3->scale.x;
-    if (shift > 0.0001)
-      object3_scale({shift, 0, 0}, this->current_obj3);
+    if (shift > 0.0001) object3_scale({shift, 0, 0}, this->current_obj3);
   }
 }
 
 void Viewer3D::obj3_scale_y(double new_y) {
   if (this->current_obj3) {
     double shift = new_y / this->current_obj3->scale.y;
-    if (shift > 0.0001)
-      object3_scale({0, shift, 0}, this->current_obj3);
+    if (shift > 0.0001) object3_scale({0, shift, 0}, this->current_obj3);
   }
 }
 
 void Viewer3D::obj3_scale_z(double new_z) {
   if (this->current_obj3) {
     double shift = new_z / this->current_obj3->scale.z;
-    if (shift > 0.0001)
-      object3_scale({0, 0, shift}, this->current_obj3);
+    if (shift > 0.0001) object3_scale({0, 0, shift}, this->current_obj3);
   }
 }
 

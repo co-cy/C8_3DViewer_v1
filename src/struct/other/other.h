@@ -9,11 +9,7 @@
 extern "C" {
 #endif
 
-typedef enum status_code_e {
-  OK = 0,
-  BAD,
-  LOW_MEMORY
-} status_code;
+typedef enum status_code_e { OK = 0, BAD, LOW_MEMORY } status_code;
 
 typedef struct vertex3_s {
   double x;
