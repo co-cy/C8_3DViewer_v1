@@ -96,7 +96,7 @@
          <x>0</x>
          <y>0</y>
          <width>268</width>
-         <height>617</height>
+         <height>631</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -123,8 +123,17 @@
            <layout class="QGridLayout" name="move_grid">
             <item row="0" column="1">
              <widget class="QLabel" name="move_x_label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
                <string>X</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
@@ -143,8 +152,17 @@
             </item>
             <item row="0" column="5">
              <widget class="QLabel" name="move_z_label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
                <string>Z</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
@@ -163,8 +181,17 @@
             </item>
             <item row="0" column="3">
              <widget class="QLabel" name="move_y_label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
                <string>Y</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
@@ -199,74 +226,62 @@
           </item>
           <item>
            <layout class="QGridLayout" name="rotate_grid">
-            <item row="0" column="1">
-             <widget class="QSlider" name="rotate_x_slider">
-              <property name="minimum">
-               <number>-360</number>
-              </property>
-              <property name="maximum">
-               <number>360</number>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
             <item row="0" column="0">
              <widget class="QLabel" name="rotate_x_label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
                <string>X</string>
               </property>
-             </widget>
-            </item>
-            <item row="0" column="2">
-             <widget class="QDoubleSpinBox" name="rotate_x_spin"/>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="rotate_y_label">
-              <property name="text">
-               <string>Y</string>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
-            <item row="2" column="0">
+            <item row="0" column="1">
+             <widget class="QDoubleSpinBox" name="rotate_x_spin"/>
+            </item>
+            <item row="0" column="3">
+             <widget class="QDoubleSpinBox" name="rotate_y_spin"/>
+            </item>
+            <item row="0" column="4">
              <widget class="QLabel" name="rotate_z_label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
                <string>Z</string>
               </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QSlider" name="rotate_y_slider">
-              <property name="minimum">
-               <number>-360</number>
-              </property>
-              <property name="maximum">
-               <number>360</number>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
-            <item row="2" column="1">
-             <widget class="QSlider" name="rotate_z_slider">
-              <property name="minimum">
-               <number>-360</number>
-              </property>
-              <property name="maximum">
-               <number>360</number>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="2">
-             <widget class="QDoubleSpinBox" name="rotate_y_spin"/>
-            </item>
-            <item row="2" column="2">
+            <item row="0" column="5">
              <widget class="QDoubleSpinBox" name="rotate_z_spin"/>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLabel" name="rotate_y_label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Y</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -287,17 +302,91 @@
           <item>
            <layout class="QGridLayout" name="scale_grid">
             <item row="0" column="0">
-             <widget class="QSlider" name="scale_slider">
-              <property name="minimum">
-               <number>1</number>
+             <widget class="QLabel" name="scale_x_label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
               </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+              <property name="text">
+               <string>X</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QDoubleSpinBox" name="scale_spin"/>
+             <widget class="QDoubleSpinBox" name="scale_x_spin">
+              <property name="minimum">
+               <double>0.010000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>999.000000000000000</double>
+              </property>
+              <property name="value">
+               <double>1.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="QDoubleSpinBox" name="scale_y_spin">
+              <property name="minimum">
+               <double>0.010000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>999.000000000000000</double>
+              </property>
+              <property name="value">
+               <double>1.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="4">
+             <widget class="QLabel" name="scale_z_label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Z</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLabel" name="scale_y_label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Y</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="5">
+             <widget class="QDoubleSpinBox" name="scale_z_spin">
+              <property name="minimum">
+               <double>0.010000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>999.000000000000000</double>
+              </property>
+              <property name="value">
+               <double>1.000000000000000</double>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -345,7 +434,7 @@
     </widget>
     <addaction name="load_file_2"/>
     <addaction name="menu_2"/>
-    <addaction name="action_2"/>
+    <addaction name="action_exit"/>
    </widget>
    <addaction name="menu"/>
   </widget>
@@ -355,7 +444,7 @@
     <string>Загрузить</string>
    </property>
   </action>
-  <action name="action_2">
+  <action name="action_exit">
    <property name="text">
     <string>Выход</string>
    </property>

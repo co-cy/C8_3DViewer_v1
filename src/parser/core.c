@@ -13,12 +13,10 @@ object3_t* parse_object3_from_obj_file(const char* filename) {
   FILE* file;
   if (fopen_s(&file, filename, "r")) return NULL;
 
-  object3_t* new_object = calloc(1, sizeof(object3_t));
-  if (!new_object) exit(LOW_MEMORY);
+  object3_t* new_object = create_object3();
 
   parse_size_from_obj_file(file, new_object);
   fseek(file, SEEK_SET, 0);
-
   parse_data_from_obj_file(file, new_object);
 
   return new_object;

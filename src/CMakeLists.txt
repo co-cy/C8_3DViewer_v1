@@ -15,18 +15,23 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_PREFIX_PATH "D:\\Qt\\6.3.1\\mingw_64")
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets OpenGLWidgets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets OpenGLWidgets Core)
 
 set(PROJECT_SOURCES
         main.cpp
         viewer3d.cpp
         viewer3d.h
         viewer3d.ui
-        struct/struct.h
-        struct/free_object3.c
+        struct/object3/object3.h
+        struct/object3/create.c
+        struct/object3/free.c
         parser/core.c
         parser/core.h
-        main.h
+        transformations/transformations.h
+        transformations/rotate.c
+        transformations/scale.c
+        transformations/move.c
+        struct/other/other.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -52,7 +57,11 @@ else()
     endif()
 endif()
 
-target_link_libraries(3DViewer_v1 PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::OpenGLWidgets)
+target_link_libraries(3DViewer_v1 PRIVATE
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::OpenGLWidgets
+    Qt${QT_VERSION_MAJOR}::Core
+)
 
 
 set_target_properties(3DViewer_v1 PROPERTIES
