@@ -16,17 +16,20 @@ class Viewer3D : public QMainWindow {
   Q_OBJECT
 
  public:
-  Viewer3D(QWidget *parent = nullptr);
-  ~Viewer3D();
+  explicit Viewer3D(QWidget *parent = nullptr);
+  ~Viewer3D() override;
 
  private:
   Ui::Viewer3D *ui;
 
  protected:
-  object3_t *current_obj3 = NULL;
+  object3_t *current_obj3 = nullptr;
   bool ignore_event = false;
 
   void setEnableTools(bool state);
+
+  void loadSettings();
+  void saveSettings();
 
  protected slots:
   void load_file();
@@ -46,5 +49,7 @@ class Viewer3D : public QMainWindow {
   void updateShift(QPoint shift);
   void updateRotate(QPoint shift);
   void updateScale(int y);
+
+  void changeBackgroundColor();
 };
 #endif  // VIEWER3D_H

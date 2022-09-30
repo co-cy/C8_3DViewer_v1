@@ -8,9 +8,9 @@ Viewer3D::Viewer3D(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::Viewer3D) {
   ui->setupUi(this);
 
-  connect(ui->load_file, SIGNAL(clicked()), this, SLOT(load_file()));
-
   this->setEnableTools(this->current_obj3);
+
+  connect(ui->load_file, SIGNAL(clicked()), this, SLOT(load_file()));
 
   connect(ui->move_x_spin, SIGNAL(valueChanged(double)), this,
           SLOT(obj3_move_x(double)));
@@ -39,12 +39,95 @@ Viewer3D::Viewer3D(QWidget *parent)
           SLOT(updateRotate(QPoint)));
   connect(ui->openGLWidget, SIGNAL(mouseScroll(int)), this,
           SLOT(updateScale(int)));
+
+  connect(ui->color_red_spin, SIGNAL(valueChanged(int)), this,
+          SLOT(changeBackgroundColor()));
+  connect(ui->color_green_spin, SIGNAL(valueChanged(int)), this,
+          SLOT(changeBackgroundColor()));
+  connect(ui->color_blue_spin, SIGNAL(valueChanged(int)), this,
+          SLOT(changeBackgroundColor()));
+
+  this->loadSettings();
+}
+
+void Viewer3D::loadSettings() {
+  FILE* file;
+  if (fopen_s(&file, "settings.my", "r")) return;
+
+  double d_tmp;
+  int int_tmp;
+  if (!fscanf_s(file, "%Lf", &d_tmp))
+    return;
+  this->ui->move_x_spin->setValue(d_tmp);
+  if (!fscanf_s(file, "%Lf", &d_tmp))
+    return;
+  this->ui->move_y_spin->setValue(d_tmp);
+  if (!fscanf_s(file, "%Lf", &d_tmp))
+    return;
+  this->ui->move_z_spin->setValue(d_tmp);
+  if (!fscanf_s(file, "%Lf", &d_tmp))
+    return;
+  this->ui->rotate_x_spin->setValue(d_tmp);
+  if (!fscanf_s(file, "%Lf", &d_tmp))
+    return;
+  this->ui->rotate_y_spin->setValue(d_tmp);
+  if (!fscanf_s(file, "%Lf", &d_tmp))
+    return;
+  this->ui->rotate_z_spin->setValue(d_tmp);
+  if (!fscanf_s(file, "%Lf", &d_tmp))
+    return;
+  this->ui->scale_x_spin->setValue(d_tmp);
+  if (!fscanf_s(file, "%Lf", &d_tmp))
+    return;
+  this->ui->scale_y_spin->setValue(d_tmp);
+  if (!fscanf_s(file, "%Lf", &d_tmp))
+    return;
+  this->ui->scale_z_spin->setValue(d_tmp);
+  if (!fscanf_s(file, "%u", &int_tmp))
+    return;
+  this->ui->color_red_spin->setValue(int_tmp);
+  if (!fscanf_s(file, "%u", &int_tmp))
+    return;
+  this->ui->color_green_spin->setValue(int_tmp);
+  if (!fscanf_s(file, "%u", &int_tmp))
+    return;
+  this->ui->color_blue_spin->setValue(int_tmp);
+
+  fclose(file);
+}
+
+void Viewer3D::saveSettings() {
+  FILE* file;
+  if (fopen_s(&file, "settings.my", "w")) return;
+  fprintf_s(file, "%Lf %Lf %Lf %Lf %Lf %Lf %Lf %Lf %Lf %u %u %u",
+            this->ui->move_x_spin->value(),
+            this->ui->move_y_spin->value(),
+            this->ui->move_z_spin->value(),
+            this->ui->rotate_x_spin->value(),
+            this->ui->rotate_y_spin->value(),
+            this->ui->rotate_z_spin->value(),
+            this->ui->scale_x_spin->value(),
+            this->ui->scale_y_spin->value(),
+            this->ui->scale_z_spin->value(),
+            this->ui->color_red_spin->value(),
+            this->ui->color_green_spin->value(),
+            this->ui->color_blue_spin->value()
+                );
+  fclose(file);
 }
 
 Viewer3D::~Viewer3D() {
-  free_object3(current_obj3);
+  this->saveSettings();
 
+  free_object3(current_obj3);
   delete ui;
+}
+
+void Viewer3D::changeBackgroundColor() {
+  this->ui->openGLWidget->changeBackgroundColor(
+      this->ui->color_red_spin->value(),
+      this->ui->color_green_spin->value(),
+      this->ui->color_blue_spin->value());
 }
 
 void Viewer3D::obj3_move_x(double new_x) {
@@ -150,6 +233,12 @@ void Viewer3D::setEnableTools(bool state) {
   this->ui->scale_x_spin->setEnabled(state);
   this->ui->scale_y_spin->setEnabled(state);
   this->ui->scale_z_spin->setEnabled(state);
+  this->ui->color_red_spin->setEnabled(state);
+  this->ui->color_green_spin->setEnabled(state);
+  this->ui->color_blue_spin->setEnabled(state);
+  this->ui->color_red_slider->setEnabled(state);
+  this->ui->color_green_slider->setEnabled(state);
+  this->ui->color_blue_slider->setEnabled(state);
 }
 
 void Viewer3D::updateShift(QPoint shift) {

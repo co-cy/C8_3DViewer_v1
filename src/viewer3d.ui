@@ -1,498 +1,712 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
-    <class>Viewer3D</class>
-    <widget class="QMainWindow" name="Viewer3D">
-        <property name="geometry">
-            <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>896</width>
-                <height>685</height>
-            </rect>
+ <class>Viewer3D</class>
+ <widget class="QMainWindow" name="Viewer3D">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>896</width>
+    <height>685</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Viewer3D</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout" stretch="85,0">
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="5,80,5">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>9</number>
+      </property>
+      <property name="rightMargin">
+       <number>9</number>
+      </property>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
         </property>
-        <property name="windowTitle">
-            <string>Viewer3D</string>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
         </property>
-        <widget class="QWidget" name="centralwidget">
-            <layout class="QHBoxLayout" name="horizontalLayout" stretch="85,0">
-                <property name="bottomMargin">
-                    <number>0</number>
-                </property>
-                <item>
-                    <layout class="QVBoxLayout" name="verticalLayout_2" stretch="5,80,5">
-                        <property name="spacing">
-                            <number>0</number>
-                        </property>
-                        <property name="leftMargin">
-                            <number>9</number>
-                        </property>
-                        <property name="rightMargin">
-                            <number>9</number>
-                        </property>
-                        <item>
-                            <spacer name="verticalSpacer">
-                                <property name="orientation">
-                                    <enum>Qt::Vertical</enum>
-                                </property>
-                                <property name="sizeHint" stdset="0">
-                                    <size>
-                                        <width>20</width>
-                                        <height>40</height>
-                                    </size>
-                                </property>
-                            </spacer>
-                        </item>
-                        <item>
-                            <widget class="MyQOpenGLWidget" name="openGLWidget">
-                                <property name="sizePolicy">
-                                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                                        <horstretch>0</horstretch>
-                                        <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                </property>
-                            </widget>
-                        </item>
-                        <item>
-                            <layout class="QHBoxLayout" name="bottom_info_panel">
-                                <item>
-                                    <widget class="QLabel" name="file_info">
-                                        <property name="text">
-                                            <string/>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item>
-                                    <spacer name="horizontalSpacer">
-                                        <property name="orientation">
-                                            <enum>Qt::Horizontal</enum>
-                                        </property>
-                                        <property name="sizeHint" stdset="0">
-                                            <size>
-                                                <width>40</width>
-                                                <height>20</height>
-                                            </size>
-                                        </property>
-                                    </spacer>
-                                </item>
-                                <item>
-                                    <widget class="QLabel" name="vertical_info">
-                                        <property name="text">
-                                            <string/>
-                                        </property>
-                                    </widget>
-                                </item>
-                            </layout>
-                        </item>
-                    </layout>
-                </item>
-                <item>
-                    <widget class="QScrollArea" name="panel">
-                        <property name="widgetResizable">
-                            <bool>true</bool>
-                        </property>
-                        <widget class="QWidget" name="panel_items">
-                            <property name="geometry">
-                                <rect>
-                                    <x>0</x>
-                                    <y>0</y>
-                                    <width>268</width>
-                                    <height>631</height>
-                                </rect>
-                            </property>
-                            <layout class="QVBoxLayout" name="verticalLayout">
-                                <item>
-                                    <widget class="QPushButton" name="load_file">
-                                        <property name="text">
-                                            <string>Загрузить файл</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item>
-                                    <layout class="QVBoxLayout" name="move">
-                                        <item>
-                                            <widget class="QLabel" name="move_label">
-                                                <property name="text">
-                                                    <string>Двигать</string>
-                                                </property>
-                                                <property name="alignment">
-                                                    <set>Qt::AlignCenter</set>
-                                                </property>
-                                            </widget>
-                                        </item>
-                                        <item>
-                                            <layout class="QGridLayout" name="move_grid">
-                                                <item row="0" column="1">
-                                                    <widget class="QLabel" name="move_x_label">
-                                                        <property name="sizePolicy">
-                                                            <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-                                                                <horstretch>0</horstretch>
-                                                                <verstretch>0</verstretch>
-                                                            </sizepolicy>
-                                                        </property>
-                                                        <property name="text">
-                                                            <string>X</string>
-                                                        </property>
-                                                        <property name="alignment">
-                                                            <set>Qt::AlignCenter</set>
-                                                        </property>
-                                                    </widget>
-                                                </item>
-                                                <item row="0" column="4">
-                                                    <widget class="QDoubleSpinBox" name="move_y_spin">
-                                                        <property name="minimum">
-                                                            <double>-999.000000000000000</double>
-                                                        </property>
-                                                        <property name="maximum">
-                                                            <double>999.000000000000000</double>
-                                                        </property>
-                                                        <property name="stepType">
-                                                            <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
-                                                        </property>
-                                                    </widget>
-                                                </item>
-                                                <item row="0" column="5">
-                                                    <widget class="QLabel" name="move_z_label">
-                                                        <property name="sizePolicy">
-                                                            <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-                                                                <horstretch>0</horstretch>
-                                                                <verstretch>0</verstretch>
-                                                            </sizepolicy>
-                                                        </property>
-                                                        <property name="text">
-                                                            <string>Z</string>
-                                                        </property>
-                                                        <property name="alignment">
-                                                            <set>Qt::AlignCenter</set>
-                                                        </property>
-                                                    </widget>
-                                                </item>
-                                                <item row="0" column="6">
-                                                    <widget class="QDoubleSpinBox" name="move_z_spin">
-                                                        <property name="minimum">
-                                                            <double>-999.000000000000000</double>
-                                                        </property>
-                                                        <property name="maximum">
-                                                            <double>999.000000000000000</double>
-                                                        </property>
-                                                        <property name="stepType">
-                                                            <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
-                                                        </property>
-                                                    </widget>
-                                                </item>
-                                                <item row="0" column="3">
-                                                    <widget class="QLabel" name="move_y_label">
-                                                        <property name="sizePolicy">
-                                                            <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-                                                                <horstretch>0</horstretch>
-                                                                <verstretch>0</verstretch>
-                                                            </sizepolicy>
-                                                        </property>
-                                                        <property name="text">
-                                                            <string>Y</string>
-                                                        </property>
-                                                        <property name="alignment">
-                                                            <set>Qt::AlignCenter</set>
-                                                        </property>
-                                                    </widget>
-                                                </item>
-                                                <item row="0" column="2">
-                                                    <widget class="QDoubleSpinBox" name="move_x_spin">
-                                                        <property name="minimum">
-                                                            <double>-999.000000000000000</double>
-                                                        </property>
-                                                        <property name="maximum">
-                                                            <double>999.000000000000000</double>
-                                                        </property>
-                                                        <property name="stepType">
-                                                            <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
-                                                        </property>
-                                                    </widget>
-                                                </item>
-                                            </layout>
-                                        </item>
-                                    </layout>
-                                </item>
-                                <item>
-                                    <layout class="QVBoxLayout" name="rotate">
-                                        <item>
-                                            <widget class="QLabel" name="rotate_label">
-                                                <property name="text">
-                                                    <string>Поворот</string>
-                                                </property>
-                                                <property name="alignment">
-                                                    <set>Qt::AlignCenter</set>
-                                                </property>
-                                            </widget>
-                                        </item>
-                                        <item>
-                                            <layout class="QGridLayout" name="rotate_grid">
-                                                <item row="0" column="0">
-                                                    <widget class="QLabel" name="rotate_x_label">
-                                                        <property name="sizePolicy">
-                                                            <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-                                                                <horstretch>0</horstretch>
-                                                                <verstretch>0</verstretch>
-                                                            </sizepolicy>
-                                                        </property>
-                                                        <property name="text">
-                                                            <string>X</string>
-                                                        </property>
-                                                        <property name="alignment">
-                                                            <set>Qt::AlignCenter</set>
-                                                        </property>
-                                                    </widget>
-                                                </item>
-                                                <item row="0" column="1">
-                                                    <widget class="QDoubleSpinBox" name="rotate_x_spin">
-                                                        <property name="minimum">
-                                                            <double>-360.000000000000000</double>
-                                                        </property>
-                                                        <property name="maximum">
-                                                            <double>360.000000000000000</double>
-                                                        </property>
-                                                    </widget>
-                                                </item>
-                                                <item row="0" column="3">
-                                                    <widget class="QDoubleSpinBox" name="rotate_y_spin">
-                                                        <property name="minimum">
-                                                            <double>-360.000000000000000</double>
-                                                        </property>
-                                                        <property name="maximum">
-                                                            <double>360.000000000000000</double>
-                                                        </property>
-                                                    </widget>
-                                                </item>
-                                                <item row="0" column="4">
-                                                    <widget class="QLabel" name="rotate_z_label">
-                                                        <property name="sizePolicy">
-                                                            <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-                                                                <horstretch>0</horstretch>
-                                                                <verstretch>0</verstretch>
-                                                            </sizepolicy>
-                                                        </property>
-                                                        <property name="text">
-                                                            <string>Z</string>
-                                                        </property>
-                                                        <property name="alignment">
-                                                            <set>Qt::AlignCenter</set>
-                                                        </property>
-                                                    </widget>
-                                                </item>
-                                                <item row="0" column="5">
-                                                    <widget class="QDoubleSpinBox" name="rotate_z_spin">
-                                                        <property name="minimum">
-                                                            <double>-360.000000000000000</double>
-                                                        </property>
-                                                        <property name="maximum">
-                                                            <double>360.000000000000000</double>
-                                                        </property>
-                                                    </widget>
-                                                </item>
-                                                <item row="0" column="2">
-                                                    <widget class="QLabel" name="rotate_y_label">
-                                                        <property name="sizePolicy">
-                                                            <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-                                                                <horstretch>0</horstretch>
-                                                                <verstretch>0</verstretch>
-                                                            </sizepolicy>
-                                                        </property>
-                                                        <property name="text">
-                                                            <string>Y</string>
-                                                        </property>
-                                                        <property name="alignment">
-                                                            <set>Qt::AlignCenter</set>
-                                                        </property>
-                                                    </widget>
-                                                </item>
-                                            </layout>
-                                        </item>
-                                    </layout>
-                                </item>
-                                <item>
-                                    <layout class="QVBoxLayout" name="scale">
-                                        <item>
-                                            <widget class="QLabel" name="scale_label">
-                                                <property name="text">
-                                                    <string>Маштаб</string>
-                                                </property>
-                                                <property name="alignment">
-                                                    <set>Qt::AlignCenter</set>
-                                                </property>
-                                            </widget>
-                                        </item>
-                                        <item>
-                                            <layout class="QGridLayout" name="scale_grid">
-                                                <item row="0" column="0">
-                                                    <widget class="QLabel" name="scale_x_label">
-                                                        <property name="sizePolicy">
-                                                            <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-                                                                <horstretch>0</horstretch>
-                                                                <verstretch>0</verstretch>
-                                                            </sizepolicy>
-                                                        </property>
-                                                        <property name="text">
-                                                            <string>X</string>
-                                                        </property>
-                                                        <property name="alignment">
-                                                            <set>Qt::AlignCenter</set>
-                                                        </property>
-                                                    </widget>
-                                                </item>
-                                                <item row="0" column="1">
-                                                    <widget class="QDoubleSpinBox" name="scale_x_spin">
-                                                        <property name="minimum">
-                                                            <double>0.010000000000000</double>
-                                                        </property>
-                                                        <property name="maximum">
-                                                            <double>999.000000000000000</double>
-                                                        </property>
-                                                        <property name="value">
-                                                            <double>1.000000000000000</double>
-                                                        </property>
-                                                    </widget>
-                                                </item>
-                                                <item row="0" column="3">
-                                                    <widget class="QDoubleSpinBox" name="scale_y_spin">
-                                                        <property name="minimum">
-                                                            <double>0.010000000000000</double>
-                                                        </property>
-                                                        <property name="maximum">
-                                                            <double>999.000000000000000</double>
-                                                        </property>
-                                                        <property name="value">
-                                                            <double>1.000000000000000</double>
-                                                        </property>
-                                                    </widget>
-                                                </item>
-                                                <item row="0" column="4">
-                                                    <widget class="QLabel" name="scale_z_label">
-                                                        <property name="sizePolicy">
-                                                            <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-                                                                <horstretch>0</horstretch>
-                                                                <verstretch>0</verstretch>
-                                                            </sizepolicy>
-                                                        </property>
-                                                        <property name="text">
-                                                            <string>Z</string>
-                                                        </property>
-                                                        <property name="alignment">
-                                                            <set>Qt::AlignCenter</set>
-                                                        </property>
-                                                    </widget>
-                                                </item>
-                                                <item row="0" column="2">
-                                                    <widget class="QLabel" name="scale_y_label">
-                                                        <property name="sizePolicy">
-                                                            <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-                                                                <horstretch>0</horstretch>
-                                                                <verstretch>0</verstretch>
-                                                            </sizepolicy>
-                                                        </property>
-                                                        <property name="text">
-                                                            <string>Y</string>
-                                                        </property>
-                                                        <property name="alignment">
-                                                            <set>Qt::AlignCenter</set>
-                                                        </property>
-                                                    </widget>
-                                                </item>
-                                                <item row="0" column="5">
-                                                    <widget class="QDoubleSpinBox" name="scale_z_spin">
-                                                        <property name="minimum">
-                                                            <double>0.010000000000000</double>
-                                                        </property>
-                                                        <property name="maximum">
-                                                            <double>999.000000000000000</double>
-                                                        </property>
-                                                        <property name="value">
-                                                            <double>1.000000000000000</double>
-                                                        </property>
-                                                    </widget>
-                                                </item>
-                                            </layout>
-                                        </item>
-                                    </layout>
-                                </item>
-                                <item>
-                                    <spacer name="verticalSpacer_2">
-                                        <property name="orientation">
-                                            <enum>Qt::Vertical</enum>
-                                        </property>
-                                        <property name="sizeHint" stdset="0">
-                                            <size>
-                                                <width>20</width>
-                                                <height>40</height>
-                                            </size>
-                                        </property>
-                                    </spacer>
-                                </item>
-                            </layout>
-                        </widget>
-                    </widget>
-                </item>
-            </layout>
-        </widget>
-        <widget class="QMenuBar" name="menubar">
-            <property name="geometry">
-                <rect>
-                    <x>0</x>
-                    <y>0</y>
-                    <width>896</width>
-                    <height>21</height>
-                </rect>
-            </property>
-            <widget class="QMenu" name="menu">
-                <property name="title">
-                    <string>Файл</string>
-                </property>
-                <widget class="QMenu" name="menu_2">
-                    <property name="title">
-                        <string>Сохранить как...</string>
-                    </property>
-                    <addaction name="action_jpg"/>
-                    <addaction name="action_bmp"/>
-                    <addaction name="action_gif"/>
-                </widget>
-                <addaction name="load_file_2"/>
-                <addaction name="menu_2"/>
-                <addaction name="action_exit"/>
-            </widget>
-            <addaction name="menu"/>
-        </widget>
-        <widget class="QStatusBar" name="statusbar"/>
-        <action name="load_file_2">
+       </spacer>
+      </item>
+      <item>
+       <widget class="MyQOpenGLWidget" name="openGLWidget">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="bottom_info_panel">
+        <item>
+         <widget class="QLabel" name="file_info">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="vertical_info">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QScrollArea" name="panel">
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="panel_items">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>268</width>
+         <height>631</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QPushButton" name="load_file">
+          <property name="text">
+           <string>Загрузить файл</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="move">
+          <item>
+           <widget class="QLabel" name="move_label">
             <property name="text">
-                <string>Загрузить</string>
+             <string>Двигать</string>
             </property>
-        </action>
-        <action name="action_exit">
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QGridLayout" name="move_grid">
+            <item row="0" column="1">
+             <widget class="QLabel" name="move_x_label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>X</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="4">
+             <widget class="QDoubleSpinBox" name="move_y_spin">
+              <property name="minimum">
+               <double>-999.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>999.000000000000000</double>
+              </property>
+              <property name="stepType">
+               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="5">
+             <widget class="QLabel" name="move_z_label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Z</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="6">
+             <widget class="QDoubleSpinBox" name="move_z_spin">
+              <property name="minimum">
+               <double>-999.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>999.000000000000000</double>
+              </property>
+              <property name="stepType">
+               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="QLabel" name="move_y_label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Y</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QDoubleSpinBox" name="move_x_spin">
+              <property name="minimum">
+               <double>-999.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>999.000000000000000</double>
+              </property>
+              <property name="stepType">
+               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="rotate">
+          <item>
+           <widget class="QLabel" name="rotate_label">
             <property name="text">
-                <string>Выход</string>
+             <string>Поворот</string>
             </property>
-        </action>
-        <action name="action_jpg">
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QGridLayout" name="rotate_grid">
+            <item row="0" column="0">
+             <widget class="QLabel" name="rotate_x_label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>X</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QDoubleSpinBox" name="rotate_x_spin">
+              <property name="minimum">
+               <double>-360.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>360.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="QDoubleSpinBox" name="rotate_y_spin">
+              <property name="minimum">
+               <double>-360.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>360.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="4">
+             <widget class="QLabel" name="rotate_z_label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Z</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="5">
+             <widget class="QDoubleSpinBox" name="rotate_z_spin">
+              <property name="minimum">
+               <double>-360.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>360.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLabel" name="rotate_y_label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Y</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="scale">
+          <item>
+           <widget class="QLabel" name="scale_label">
             <property name="text">
-                <string>*.jpg</string>
+             <string>Маштаб</string>
             </property>
-        </action>
-        <action name="action_bmp">
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QGridLayout" name="scale_grid">
+            <item row="0" column="0">
+             <widget class="QLabel" name="scale_x_label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>X</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QDoubleSpinBox" name="scale_x_spin">
+              <property name="minimum">
+               <double>0.010000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>999.000000000000000</double>
+              </property>
+              <property name="value">
+               <double>1.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="QDoubleSpinBox" name="scale_y_spin">
+              <property name="minimum">
+               <double>0.010000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>999.000000000000000</double>
+              </property>
+              <property name="value">
+               <double>1.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="4">
+             <widget class="QLabel" name="scale_z_label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Z</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLabel" name="scale_y_label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Y</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="5">
+             <widget class="QDoubleSpinBox" name="scale_z_spin">
+              <property name="minimum">
+               <double>0.010000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>999.000000000000000</double>
+              </property>
+              <property name="value">
+               <double>1.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="color">
+          <item>
+           <widget class="QLabel" name="color_label">
             <property name="text">
-                <string>*.bmp</string>
+             <string>Цвет заднего фона (RGB)</string>
             </property>
-        </action>
-        <action name="action_gif">
-            <property name="text">
-                <string>*.gif</string>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
             </property>
-        </action>
+           </widget>
+          </item>
+          <item>
+           <layout class="QGridLayout" name="color_grid">
+            <item row="1" column="2">
+             <widget class="QSpinBox" name="color_green_spin">
+              <property name="maximum">
+               <number>255</number>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QSlider" name="color_red_slider">
+              <property name="maximum">
+               <number>255</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QSlider" name="color_green_slider">
+              <property name="maximum">
+               <number>255</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2">
+             <widget class="QSpinBox" name="color_blue_spin">
+              <property name="maximum">
+               <number>255</number>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QSlider" name="color_blue_slider">
+              <property name="maximum">
+               <number>255</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QSpinBox" name="color_red_spin">
+              <property name="maximum">
+               <number>255</number>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="color_red_label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>R</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="color_green_label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>G</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="color_blue_label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>B</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>896</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Файл</string>
+    </property>
+    <widget class="QMenu" name="menu_2">
+     <property name="title">
+      <string>Сохранить как...</string>
+     </property>
+     <addaction name="action_jpg"/>
+     <addaction name="action_bmp"/>
+     <addaction name="action_gif"/>
     </widget>
-    <customwidgets>
-        <customwidget>
-            <class>MyQOpenGLWidget</class>
-            <extends>QOpenGLWidget</extends>
-            <header>MyQOpenGLWidget.h</header>
-        </customwidget>
-    </customwidgets>
-    <resources/>
-    <connections/>
+    <addaction name="load_file_2"/>
+    <addaction name="menu_2"/>
+    <addaction name="action_exit"/>
+   </widget>
+   <addaction name="menu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="load_file_2">
+   <property name="text">
+    <string>Загрузить</string>
+   </property>
+  </action>
+  <action name="action_exit">
+   <property name="text">
+    <string>Выход</string>
+   </property>
+  </action>
+  <action name="action_jpg">
+   <property name="text">
+    <string>*.jpg</string>
+   </property>
+  </action>
+  <action name="action_bmp">
+   <property name="text">
+    <string>*.bmp</string>
+   </property>
+  </action>
+  <action name="action_gif">
+   <property name="text">
+    <string>*.gif</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MyQOpenGLWidget</class>
+   <extends>QOpenGLWidget</extends>
+   <header>MyQOpenGLWidget.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>color_red_slider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>color_red_spin</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>726</x>
+     <y>277</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>852</x>
+     <y>277</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>color_red_spin</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>color_red_slider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>852</x>
+     <y>277</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>726</x>
+     <y>277</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>color_green_slider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>color_green_spin</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>733</x>
+     <y>308</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>852</x>
+     <y>308</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>color_green_spin</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>color_green_slider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>852</x>
+     <y>308</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>733</x>
+     <y>308</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>color_blue_spin</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>color_blue_slider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>852</x>
+     <y>339</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>733</x>
+     <y>339</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>color_blue_slider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>color_blue_spin</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>733</x>
+     <y>339</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>852</x>
+     <y>339</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
