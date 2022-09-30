@@ -19,6 +19,8 @@ object3_t* parse_object3_from_obj_file(const char* filename) {
   fseek(file, SEEK_SET, 0);
   parse_data_from_obj_file(file, new_object);
 
+  fclose(file);
+
   return new_object;
 }
 
