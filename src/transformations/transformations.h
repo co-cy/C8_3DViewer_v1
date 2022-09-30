@@ -10,14 +10,14 @@ extern "C" {
 #endif
 
 // Include external libraries
-#include "math.h"
+#include <math.h>
 
 // Include own libraries
 #include "../struct/object3/object3.h"
 
-void object3_move(vertex3_t shift, object3_t *obj3);
-void object3_rotate(vertex3_t angle, object3_t *obj3);
-void object3_scale(vertex3_t scale, object3_t *obj3);
+void object3_move(object3_t *obj3, vector3_t shift);
+void object3_rotate(object3_t *obj3, vector3_t angle);
+void object3_scale(object3_t *obj3, vector3_t scale);
 
 #ifdef __cplusplus
 }

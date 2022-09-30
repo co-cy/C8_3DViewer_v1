@@ -9,22 +9,21 @@
 extern "C" {
 #endif
 
+// Include external libraries
+
+// Include own libraries
+#include "../vector3/vector3.h"
+
 typedef enum status_code_e { OK = 0, BAD, LOW_MEMORY } status_code;
 
-typedef struct vertex3_s {
-  double x;
-  double y;
-  double z;
-} vertex3_t;
-
-typedef struct list_vertex3_s {
+typedef struct list_vector3_s {
   unsigned long int size;
-  vertex3_t *vertexes;
-} list_vertex3_t;
+  vector3_t *vectors3;
+} list_vector3_t;
 
 typedef struct polygon_s {
   unsigned long int size;
-  unsigned long int *vertexes3_id;
+  unsigned long int *vectors3_id;
 } polygon_t;
 
 typedef struct list_polygon_s {

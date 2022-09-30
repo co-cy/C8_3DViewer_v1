@@ -32,7 +32,7 @@ set(PROJECT_SOURCES
         transformations/scale.c
         transformations/move.c
         struct/other/other.h
-)
+        MyQOpenGLWidget.cpp MyQOpenGLWidget.h struct/vector3/vector3.h struct/vector3/add.c struct/vector3/rotate.c)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(3DViewer_v1

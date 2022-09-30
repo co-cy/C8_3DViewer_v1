@@ -16,11 +16,11 @@ extern "C" {
 #include "../other/other.h"
 
 typedef struct object3_s {
-  vertex3_t shift;
-  vertex3_t rotate;
-  vertex3_t scale;
+  vector3_t shift;
+  vector3_t rotate;
+  vector3_t scale;
 
-  list_vertex3_t list_vertex3;
+  list_vector3_t list_vector3;
   list_polygon_t list_polygon;
 } object3_t;
 

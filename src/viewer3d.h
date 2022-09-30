@@ -24,6 +24,8 @@ class Viewer3D : public QMainWindow {
 
  protected:
   object3_t *current_obj3 = NULL;
+  bool ignore_event = false;
+
   void setEnableTools(bool state);
 
  protected slots:
@@ -40,5 +42,9 @@ class Viewer3D : public QMainWindow {
   void obj3_scale_x(double new_x);
   void obj3_scale_y(double new_y);
   void obj3_scale_z(double new_z);
+
+  void updateShift(QPoint shift);
+  void updateRotate(QPoint shift);
+  void updateScale(int y);
 };
 #endif  // VIEWER3D_H

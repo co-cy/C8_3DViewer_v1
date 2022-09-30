@@ -4,10 +4,9 @@
 
 #include "transformations.h"
 
-void object3_move(vertex3_t shift, object3_t *obj3) {
-  for (unsigned long int i = 0; i < obj3->list_vertex3.size; i++) {
-    obj3->list_vertex3.vertexes[i].x += shift.x;
-    obj3->list_vertex3.vertexes[i].y += shift.y;
-    obj3->list_vertex3.vertexes[i].z += shift.z;
-  }
+void object3_move(object3_t *obj3, vector3_t shift) {
+  vector3_add(&obj3->shift, shift);
+
+  for (unsigned long int i = 0; i < obj3->list_vector3.size; i++)
+    vector3_add(obj3->list_vector3.vectors3 + i, shift);
 }
