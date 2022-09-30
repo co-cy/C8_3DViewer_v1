@@ -80,3 +80,11 @@ void MyQOpenGLWidget::paintGL() {
   glClearColor(color.redF(), color.greenF(), color.blueF(), 1.0f);
   glClear(GL_COLOR_BUFFER_BIT);
 }
+
+void MyQOpenGLWidget::saveBmpImage(const QString& filename) {
+  this->grabFramebuffer().save(filename, "bmp");
+}
+
+void MyQOpenGLWidget::saveJpegImage(const QString& filename) {
+  this->grabFramebuffer().save(filename, "jpeg");
+}

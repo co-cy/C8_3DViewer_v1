@@ -24,6 +24,9 @@ class MyQOpenGLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
   void mouseReleaseEvent(QMouseEvent* event) override;
   void mouseMoveEvent(QMouseEvent* event) override;
   void wheelEvent(QWheelEvent* event) override;
+
+  void saveBmpImage(const QString& filename);
+  void saveJpegImage(const QString& filename);
  protected:
   bool leftButtonPress = false;
   bool rightButtonPress = false;
@@ -35,7 +38,6 @@ class MyQOpenGLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
   QColor color = QColor();
   QOpenGLShaderProgram *prog = nullptr;
   void initializeGL() override;
-  // void resizeGL(int w, int h) override;
    void paintGL() override;
 
  signals:

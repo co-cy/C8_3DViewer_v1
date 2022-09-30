@@ -19,28 +19,66 @@
      <number>0</number>
     </property>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="5,80,5">
+     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="5,90,5">
       <property name="spacing">
-       <number>0</number>
+       <number>6</number>
       </property>
       <property name="leftMargin">
+       <number>9</number>
+      </property>
+      <property name="topMargin">
        <number>9</number>
       </property>
       <property name="rightMargin">
        <number>9</number>
       </property>
+      <property name="bottomMargin">
+       <number>9</number>
+      </property>
       <item>
-       <spacer name="verticalSpacer">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
+       <layout class="QHBoxLayout" name="top_info_panel">
+        <item>
+         <widget class="QLabel" name="save_lavel">
+          <property name="text">
+           <string>Сохранить как:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="jpeg_button">
+          <property name="text">
+           <string>jpeg</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="bmp_button">
+          <property name="text">
+           <string>bmp</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="gif_button">
+          <property name="text">
+           <string>gif</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
       </item>
       <item>
        <widget class="MyQOpenGLWidget" name="openGLWidget">

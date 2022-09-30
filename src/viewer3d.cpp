@@ -47,6 +47,13 @@ Viewer3D::Viewer3D(QWidget *parent)
   connect(ui->color_blue_spin, SIGNAL(valueChanged(int)), this,
           SLOT(changeBackgroundColor()));
 
+  connect(ui->jpeg_button, SIGNAL(clicked()), this,
+          SLOT(saveJpegImage()));
+  connect(ui->bmp_button, SIGNAL(clicked()), this,
+          SLOT(saveBmpImage()));
+  connect(ui->gif_button, SIGNAL(clicked()), this,
+          SLOT(saveGifImage()));
+
   this->loadSettings();
 }
 
@@ -196,6 +203,8 @@ void Viewer3D::obj3_scale_z(double new_z) {
 void Viewer3D::load_file() {
   QString fileName =
       QFileDialog::getOpenFileName(this, "Выбрать файл", NULL, "Object(*.obj)");
+  if (fileName.isNull())
+    return;
   this->ui->file_info->setText("File: " + fileName);
 
   if (this->current_obj3) free_object3(this->current_obj3);
@@ -289,4 +298,25 @@ void Viewer3D::updateScale(int y) {
   object3_scale(this->current_obj3, {this->ui->scale_x_spin->value(),
                                      this->ui->scale_y_spin->value(),
                                      this->ui->scale_z_spin->value()});
+}
+
+
+void Viewer3D::saveJpegImage() {
+  QString fileName = QFileDialog::getSaveFileName(this, "Сохранить файл",
+                                                  NULL, "Image(*.jpeg)");
+  if (fileName.isNull())
+    return;
+  this->ui->openGLWidget->saveJpegImage(fileName);
+}
+
+void Viewer3D::saveBmpImage() {
+  QString fileName = QFileDialog::getSaveFileName(this, "Сохранить файл",
+                                                  NULL, "Image(*.bmp)");
+  if (fileName.isNull())
+    return;
+  this->ui->openGLWidget->saveBmpImage(fileName);
+}
+
+void Viewer3D::saveGifImage() {
+
 }

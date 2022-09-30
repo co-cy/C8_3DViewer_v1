@@ -51,5 +51,9 @@ class Viewer3D : public QMainWindow {
   void updateScale(int y);
 
   void changeBackgroundColor();
+
+  void saveJpegImage();
+  void saveBmpImage();
+  void saveGifImage();
 };
 #endif  // VIEWER3D_H
