@@ -125,6 +125,16 @@ void Viewer3D::load_file() {
     QString polygon =
         " Полигонов: " + QString::number(this->current_obj3->list_polygon.size);
     this->ui->vertical_info->setText(vertexes + polygon);
+
+    object3_move(this->current_obj3, {this->ui->move_x_spin->value(),
+                                      this->ui->move_y_spin->value(),
+                                      this->ui->move_z_spin->value()});
+    object3_rotate(this->current_obj3, {this->ui->rotate_x_spin->value(),
+                                        this->ui->rotate_y_spin->value(),
+                                        this->ui->rotate_z_spin->value()});
+    object3_scale(this->current_obj3, {this->ui->scale_x_spin->value(),
+                                       this->ui->scale_y_spin->value(),
+                                       this->ui->scale_z_spin->value()});
   }
 
   this->setEnableTools(this->current_obj3);
@@ -187,8 +197,7 @@ void Viewer3D::updateScale(int y) {
   this->ui->scale_z_spin->setValue(this->ui->scale_z_spin->value() + y);
   this->ignore_event = false;
 
-  vector3_t vector3 = {this->ui->scale_x_spin->value(),
-                       this->ui->scale_y_spin->value(),
-                       this->ui->scale_z_spin->value()};
-  object3_scale(this->current_obj3, vector3);
+  object3_scale(this->current_obj3, {this->ui->scale_x_spin->value(),
+                                     this->ui->scale_y_spin->value(),
+                                     this->ui->scale_z_spin->value()});
 }
