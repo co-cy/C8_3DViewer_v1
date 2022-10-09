@@ -15,7 +15,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_PREFIX_PATH "D:\\Qt\\6.3.1\\mingw_64")
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets OpenGLWidgets Core)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets OpenGLWidgets Core OpenGL)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -27,12 +27,16 @@ set(PROJECT_SOURCES
         struct/object3/free.c
         parser/core.c
         parser/core.h
-        transformations/transformations.h
-        transformations/rotate.c
-        transformations/scale.c
-        transformations/move.c
-        struct/other/other.h
-        MyQOpenGLWidget.cpp MyQOpenGLWidget.h struct/vector3/vector3.h struct/vector3/add.c struct/vector3/rotate.c)
+        struct/other.h
+        MyQOpenGLWidget.cpp
+        MyQOpenGLWidget.h
+        struct/object3/transformations/move.c
+        struct/object3/transformations/rotate.c
+        struct/object3/transformations/scale.c
+        struct/vector3/add.c
+        struct/vector3/rotate.c
+        struct/vector3/vector3.h
+        )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(3DViewer_v1
@@ -61,6 +65,8 @@ target_link_libraries(3DViewer_v1 PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::OpenGLWidgets
     Qt${QT_VERSION_MAJOR}::Core
+    Qt6::OpenGL
+    OpenGL32
 )
 
 

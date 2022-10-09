@@ -12,13 +12,16 @@
 #include <QOpenGLBuffer>
 #include <QMouseEvent>
 #include <QWheelEvent>
+#include "struct/object3/object3.h"
 
-class MyQOpenGLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
+class MyQOpenGLWidget : public QOpenGLWidget, public QOpenGLFunctions {
   Q_OBJECT
 
  public:
   explicit MyQOpenGLWidget(QWidget* parent = nullptr);
   ~MyQOpenGLWidget() override;
+
+   object3_t** cur_obect = nullptr;
 
   void mousePressEvent(QMouseEvent* event) override;
   void mouseReleaseEvent(QMouseEvent* event) override;
@@ -27,6 +30,7 @@ class MyQOpenGLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
 
   void saveBmpImage(const QString& filename);
   void saveJpegImage(const QString& filename);
+  void shift(double x, double y, double z);
  protected:
   bool leftButtonPress = false;
   bool rightButtonPress = false;

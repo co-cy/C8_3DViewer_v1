@@ -4,7 +4,6 @@
 #include <QMainWindow>
 
 #include "./parser/core.h"
-#include "./transformations/transformations.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

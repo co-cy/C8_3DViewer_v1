@@ -13,19 +13,27 @@ extern "C" {
 #include <stdlib.h>
 
 // Include own libraries
-#include "../other/other.h"
+#include "../vector3/vector3.h"
+#include "../other.h"
+
+#define POLYGON_SIZE (2)
+#define VERTEX_SIZE (3)
 
 typedef struct object3_s {
   vector3_t shift;
   vector3_t rotate;
   vector3_t scale;
 
-  list_vector3_t list_vector3;
+  list_vertex3_t list_vertex3;
   list_polygon_t list_polygon;
 } object3_t;
 
 object3_t* create_object3();
-void free_object3(object3_t* object3);
+void free_object3(object3_t** object3);
+void object3_move(object3_t *obj3, vector3_t shift);
+void object3_rotate(object3_t *obj3, vector3_t angle);
+void object3_scale(object3_t *obj3, vector3_t scale);
+
 
 #ifdef __cplusplus
 }
