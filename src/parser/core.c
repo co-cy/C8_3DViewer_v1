@@ -11,8 +11,8 @@ void parse_vertex3_from_obj_file(FILE* file, list_vertex3_t* list_vertex3);
 void parse_polygon_from_obj_file(FILE* file, list_polygon_t* list_polygon);
 
 object3_t* parse_object3_from_obj_file(const char* filename) {
-  FILE* file;
-  if (fopen_s(&file, filename, "r")) return NULL;
+  FILE* file = fopen(filename, "r");
+  if (!file) return NULL;
 
   object3_t* new_object = create_object3();
 
@@ -61,7 +61,7 @@ void parse_vertex3_from_obj_file(FILE* file, list_vertex3_t* list_vertex3) {
     fgets(buff, BUF_SIZE, file);
 
     if (buff[0] == 'v' && buff[1] == ' ') {
-        sscanf_s(buff + 2, "%lf%lf%lf",
+        sscanf(buff + 2, "%lf%lf%lf",
                  list_vertex3->vertex3 + i,
                  list_vertex3->vertex3 + i + 1,
                  list_vertex3->vertex3 + i + 2);

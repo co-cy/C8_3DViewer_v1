@@ -59,69 +59,69 @@ Viewer3D::Viewer3D(QWidget *parent)
 }
 
 void Viewer3D::loadSettings() {
-  FILE* file;
-  if (fopen_s(&file, "settings.my", "r")) return;
+//  FILE* file;
+//  if (fopen_s(&file, "settings.my", "r")) return;
 
-  double d_tmp;
-  int int_tmp;
-  if (!fscanf_s(file, "%Lf", &d_tmp))
-    return;
-  this->ui->move_x_spin->setValue(d_tmp);
-  if (!fscanf_s(file, "%Lf", &d_tmp))
-    return;
-  this->ui->move_y_spin->setValue(d_tmp);
-  if (!fscanf_s(file, "%Lf", &d_tmp))
-    return;
-  this->ui->move_z_spin->setValue(d_tmp);
-  if (!fscanf_s(file, "%Lf", &d_tmp))
-    return;
-  this->ui->rotate_x_spin->setValue(d_tmp);
-  if (!fscanf_s(file, "%Lf", &d_tmp))
-    return;
-  this->ui->rotate_y_spin->setValue(d_tmp);
-  if (!fscanf_s(file, "%Lf", &d_tmp))
-    return;
-  this->ui->rotate_z_spin->setValue(d_tmp);
-  if (!fscanf_s(file, "%Lf", &d_tmp))
-    return;
-  this->ui->scale_x_spin->setValue(d_tmp);
-  if (!fscanf_s(file, "%Lf", &d_tmp))
-    return;
-  this->ui->scale_y_spin->setValue(d_tmp);
-  if (!fscanf_s(file, "%Lf", &d_tmp))
-    return;
-  this->ui->scale_z_spin->setValue(d_tmp);
-  if (!fscanf_s(file, "%u", &int_tmp))
-    return;
-  this->ui->color_red_spin->setValue(int_tmp);
-  if (!fscanf_s(file, "%u", &int_tmp))
-    return;
-  this->ui->color_green_spin->setValue(int_tmp);
-  if (!fscanf_s(file, "%u", &int_tmp))
-    return;
-  this->ui->color_blue_spin->setValue(int_tmp);
+//  double d_tmp;
+//  int int_tmp;
+//  if (!fscanf_s(file, "%Lf", &d_tmp))
+//    return;
+//  this->ui->move_x_spin->setValue(d_tmp);
+//  if (!fscanf_s(file, "%Lf", &d_tmp))
+//    return;
+//  this->ui->move_y_spin->setValue(d_tmp);
+//  if (!fscanf_s(file, "%Lf", &d_tmp))
+//    return;
+//  this->ui->move_z_spin->setValue(d_tmp);
+//  if (!fscanf_s(file, "%Lf", &d_tmp))
+//    return;
+//  this->ui->rotate_x_spin->setValue(d_tmp);
+//  if (!fscanf_s(file, "%Lf", &d_tmp))
+//    return;
+//  this->ui->rotate_y_spin->setValue(d_tmp);
+//  if (!fscanf_s(file, "%Lf", &d_tmp))
+//    return;
+//  this->ui->rotate_z_spin->setValue(d_tmp);
+//  if (!fscanf_s(file, "%Lf", &d_tmp))
+//    return;
+//  this->ui->scale_x_spin->setValue(d_tmp);
+//  if (!fscanf_s(file, "%Lf", &d_tmp))
+//    return;
+//  this->ui->scale_y_spin->setValue(d_tmp);
+//  if (!fscanf_s(file, "%Lf", &d_tmp))
+//    return;
+//  this->ui->scale_z_spin->setValue(d_tmp);
+//  if (!fscanf_s(file, "%u", &int_tmp))
+//    return;
+//  this->ui->color_red_spin->setValue(int_tmp);
+//  if (!fscanf_s(file, "%u", &int_tmp))
+//    return;
+//  this->ui->color_green_spin->setValue(int_tmp);
+//  if (!fscanf_s(file, "%u", &int_tmp))
+//    return;
+//  this->ui->color_blue_spin->setValue(int_tmp);
 
-  fclose(file);
+//  fclose(file);
 }
 
 void Viewer3D::saveSettings() {
-  FILE* file;
-  if (fopen_s(&file, "settings.my", "w")) return;
-  fprintf_s(file, "%Lf %Lf %Lf %Lf %Lf %Lf %Lf %Lf %Lf %u %u %u",
-            this->ui->move_x_spin->value(),
-            this->ui->move_y_spin->value(),
-            this->ui->move_z_spin->value(),
-            this->ui->rotate_x_spin->value(),
-            this->ui->rotate_y_spin->value(),
-            this->ui->rotate_z_spin->value(),
-            this->ui->scale_x_spin->value(),
-            this->ui->scale_y_spin->value(),
-            this->ui->scale_z_spin->value(),
-            this->ui->color_red_spin->value(),
-            this->ui->color_green_spin->value(),
-            this->ui->color_blue_spin->value()
-                );
-  fclose(file);
+//  FILE* file;
+//  if (fopen_s(&file, "settings.my", "w")) return;
+//  fprintf_s(file, "%Lf %Lf %Lf %Lf %Lf %Lf %Lf %Lf %Lf %u %u %u",
+//            this->ui->move_x_spin->value(),
+//            this->ui->move_y_spin->value(),
+//            this->ui->move_z_spin->value(),
+//            this->ui->rotate_x_spin->value(),
+//            this->ui->rotate_y_spin->value(),
+//            this->ui->rotate_z_spin->value(),
+//            this->ui->scale_x_spin->value(),
+//            this->ui->scale_y_spin->value(),
+//            this->ui->scale_z_spin->value(),
+//            this->ui->color_red_spin->value(),
+//            this->ui->color_green_spin->value(),
+//            this->ui->color_blue_spin->value()
+//                );
+//  fclose(file);
 }
 
 Viewer3D::~Viewer3D() {

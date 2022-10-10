@@ -12,7 +12,7 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(CMAKE_PREFIX_PATH "D:\\Qt\\6.3.1\\mingw_64")
+#set(CMAKE_PREFIX_PATH "D:\\Qt\\6.3.1\\mingw_64")
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets OpenGLWidgets Core OpenGL)
@@ -66,7 +66,7 @@ target_link_libraries(3DViewer_v1 PRIVATE
     Qt${QT_VERSION_MAJOR}::OpenGLWidgets
     Qt${QT_VERSION_MAJOR}::Core
     Qt6::OpenGL
-    OpenGL32
+#    OpenGL32
 )
 
 
