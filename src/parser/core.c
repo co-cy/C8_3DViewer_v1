@@ -41,7 +41,7 @@ void parse_size_object3_from_obj_file(FILE* file, object3_t* object3) {
         } else if (buff[0] == 'f' && buff[1] == ' ') {
           object3->list_polygon.count++;
           for (char* tmp = buff; *tmp; tmp++)
-            if (*tmp == ' ') {
+            if (*tmp == ' ' && isdigit(*(tmp + 1))) {
               object3->list_polygon.size += POLYGON_SIZE;
             }
         }
@@ -80,7 +80,7 @@ void parse_polygon_from_obj_file(FILE* file, list_polygon_t* list_polygon) {
       unsigned int start_i = i;
 
       for (char* tmp = buff + 1; *tmp; tmp++) {
-        while (*tmp == ' ') {
+        while (*tmp == ' ' && isdigit(*(tmp + 1))) {
             tmp++;
           if ((i - start_i) >= 2) {
             list_polygon->polygons[i] = list_polygon->polygons[i - 1];
