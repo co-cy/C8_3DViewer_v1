@@ -333,3 +333,15 @@ void Viewer3D::saveBmpImage() {
 void Viewer3D::saveGifImage() {
 
 }
+
+void Viewer3D::on_edges_solid_pressed() {
+    this->ui->openGLWidget->lineType = 0;
+    this->ui->openGLWidget->update();
+}
+
+
+void Viewer3D::on_edges_dashed_pressed() {
+    this->ui->openGLWidget->lineType = 1;
+    this->ui->openGLWidget->update();
+}
+

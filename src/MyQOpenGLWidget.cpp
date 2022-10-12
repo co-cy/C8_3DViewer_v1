@@ -1,6 +1,7 @@
 //
 // Created by stf20 on 29.09.2022.
 //
+#define GL_SILENCE_DEPRECATION
 
 #include "MyQOpenGLWidget.h"
 
@@ -49,6 +50,10 @@ void MyQOpenGLWidget::changeBackgroundColor(int r, int g, int b) {
   update();
 }
 
+//void MyQOpenGLWidget::toDefault() {
+//    lineType = 0;
+//}
+
 void MyQOpenGLWidget::initializeGL() {
   initializeOpenGLFunctions();
   glEnable(GL_DEPTH_TEST); // включаем буфер глубины для отображения Z-координаты.
@@ -80,20 +85,31 @@ void MyQOpenGLWidget::paintGL() {
 //      glClearColor(0.1f, 0.1f, 0.1f, 0.0f); // background color
 //      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_TEST);
 
+
       glVertexPointer(3, GL_DOUBLE, 0, (*this->cur_obect)->list_vertex3.vertex3); // array_of_coord
       glEnableClientState(GL_VERTEX_ARRAY); // Enable state Opengl
           glColor3f(1, 0, 0); // color point
           glEnable(GL_POINT_SMOOTH);
-              glPointSize(10);
+              glPointSize(5);
               glDrawArrays(GL_POINTS, 0, ((*this->cur_obect)->list_vertex3.count));
           glDisable(GL_POINT_SMOOTH);
 
           glColor3f(0.12, 0.69, 0.55); // color lines
-          glEnable(GL_LINE_STIPPLE);
-          glLineStipple(1, 0x3333); // pattern lines
+
+//          changePatternLines();
+//          glLineStipple(1, 0x3333); // pattern lines
+          if (lineType) {
+              glEnable(GL_LINE_STIPPLE);
+              glLineStipple(3, 0x00FF);
+//              glLineStipple(2, 0x3333);
+          }
           glLineWidth(2);
 
-      glDrawElements(GL_LINES, (*this->cur_obect)->list_polygon.size, GL_UNSIGNED_INT, (*this->cur_obect)->list_polygon.polygons);
+          glDrawElements(GL_LINES, (*this->cur_obect)->list_polygon.size, GL_UNSIGNED_INT, (*this->cur_obect)->list_polygon.polygons);
+
+          if (lineType) glDisable(GL_LINE_STIPPLE);
+
+
       glDisableClientState(GL_VERTEX_ARRAY); // Disable state Opengl
   }
 }
@@ -109,3 +125,5 @@ void MyQOpenGLWidget::saveJpegImage(const QString& filename) {
 void MyQOpenGLWidget::shift(double x, double y, double z) {
 //    glTranslatef(x, y, z);
 }
+
+

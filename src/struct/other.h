@@ -20,7 +20,7 @@ typedef struct list_vertex3_s {
 typedef struct list_polygon_s {
   unsigned long count;
   unsigned long size;
-  unsigned long *polygons;
+  int* polygons;
 } list_polygon_t;
 
 #ifdef __cplusplus

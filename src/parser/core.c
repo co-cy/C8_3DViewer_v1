@@ -30,29 +30,30 @@ object3_t* parse_object3_from_obj_file(const char* filename) {
 }
 
 void parse_size_object3_from_obj_file(FILE* file, object3_t* object3) {
-    object3->list_vertex3.size = 0;
-    object3->list_polygon.size = 0;
+  object3->list_vertex3.size = 0;
+  object3->list_polygon.size = 0;
 
-    char buff[BUF_SIZE];
-    while (fgets(buff, BUF_SIZE, file))
-        if (buff[0] == 'v' && buff[1] == ' ') {
-          object3->list_vertex3.count++;
-          object3->list_vertex3.size += VERTEX_SIZE;
-        } else if (buff[0] == 'f' && buff[1] == ' ') {
-          object3->list_polygon.count++;
-          for (char* tmp = buff; *tmp; tmp++)
-            if (*tmp == ' ' && isdigit(*(tmp + 1))) {
-              object3->list_polygon.size += POLYGON_SIZE;
-            }
+  char buff[BUF_SIZE];
+  while (fgets(buff, BUF_SIZE, file))
+    if (buff[0] == 'v' && buff[1] == ' ') {
+      object3->list_vertex3.count++;
+      object3->list_vertex3.size += VERTEX_SIZE;
+    } else if (buff[0] == 'f' && buff[1] == ' ') {
+      object3->list_polygon.count++;
+      for (char* tmp = buff; *tmp; tmp++)
+        if (*tmp == ' ' && isdigit(*(tmp + 1))) {
+          object3->list_polygon.size += POLYGON_SIZE;
         }
+    }
 
-    object3->list_vertex3.vertex3 = calloc(object3->list_vertex3.size, sizeof(double));
-    if (!object3->list_vertex3.vertex3) exit(LOW_MEMORY);
+  object3->list_vertex3.vertex3 =
+      calloc(object3->list_vertex3.size, sizeof(double));
+  if (!object3->list_vertex3.vertex3) exit(LOW_MEMORY);
 
-    object3->list_polygon.polygons = calloc(object3->list_polygon.size, sizeof(unsigned long));
-    if (!object3->list_vertex3.vertex3) exit(LOW_MEMORY);
+  object3->list_polygon.polygons =
+      calloc(object3->list_polygon.size, sizeof(int));
+  if (!object3->list_vertex3.vertex3) exit(LOW_MEMORY);
 }
-
 
 void parse_vertex3_from_obj_file(FILE* file, list_vertex3_t* list_vertex3) {
   char buff[BUF_SIZE];
@@ -61,11 +62,9 @@ void parse_vertex3_from_obj_file(FILE* file, list_vertex3_t* list_vertex3) {
     fgets(buff, BUF_SIZE, file);
 
     if (buff[0] == 'v' && buff[1] == ' ') {
-        sscanf(buff + 2, "%lf%lf%lf",
-                 list_vertex3->vertex3 + i,
-                 list_vertex3->vertex3 + i + 1,
-                 list_vertex3->vertex3 + i + 2);
-        i += VERTEX_SIZE;
+      sscanf(buff + 2, "%lf%lf%lf", list_vertex3->vertex3 + i,
+             list_vertex3->vertex3 + i + 1, list_vertex3->vertex3 + i + 2);
+      i += VERTEX_SIZE;
     }
   }
 }
@@ -81,7 +80,7 @@ void parse_polygon_from_obj_file(FILE* file, list_polygon_t* list_polygon) {
 
       for (char* tmp = buff + 1; *tmp; tmp++) {
         while (*tmp == ' ' && isdigit(*(tmp + 1))) {
-            tmp++;
+          tmp++;
           if ((i - start_i) >= 2) {
             list_polygon->polygons[i] = list_polygon->polygons[i - 1];
             i++;

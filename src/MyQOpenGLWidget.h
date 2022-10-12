@@ -14,6 +14,8 @@
 #include <QWheelEvent>
 #include "struct/object3/object3.h"
 
+#include <iostream>
+
 class MyQOpenGLWidget : public QOpenGLWidget, public QOpenGLFunctions {
   Q_OBJECT
 
@@ -22,6 +24,7 @@ class MyQOpenGLWidget : public QOpenGLWidget, public QOpenGLFunctions {
   ~MyQOpenGLWidget() override;
 
    object3_t** cur_obect = nullptr;
+  int lineType = 0; // 1 for stripple
 
   void mousePressEvent(QMouseEvent* event) override;
   void mouseReleaseEvent(QMouseEvent* event) override;
@@ -31,6 +34,7 @@ class MyQOpenGLWidget : public QOpenGLWidget, public QOpenGLFunctions {
   void saveBmpImage(const QString& filename);
   void saveJpegImage(const QString& filename);
   void shift(double x, double y, double z);
+
  protected:
   bool leftButtonPress = false;
   bool rightButtonPress = false;
@@ -42,7 +46,10 @@ class MyQOpenGLWidget : public QOpenGLWidget, public QOpenGLFunctions {
   QColor color = QColor();
   QOpenGLShaderProgram *prog = nullptr;
   void initializeGL() override;
-   void paintGL() override;
+  void paintGL() override;
+
+ private:
+//    void toDefault();
 
  signals:
   void leftButtonMove(QPoint shift);

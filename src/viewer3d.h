@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 
+ #include <iostream>
 #include "./parser/core.h"
 
 QT_BEGIN_NAMESPACE
@@ -54,5 +55,8 @@ class Viewer3D : public QMainWindow {
   void saveJpegImage();
   void saveBmpImage();
   void saveGifImage();
+private slots:
+  void on_edges_dashed_pressed();
+  void on_edges_solid_pressed();
 };
 #endif  // VIEWER3D_H
