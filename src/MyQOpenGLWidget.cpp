@@ -55,6 +55,11 @@ void MyQOpenGLWidget::changeColorLine(int r, int g, int b) {
   update();
 }
 
+void MyQOpenGLWidget::changeVerLine(int r, int g, int b) {
+  this->colorVer = QColor(r, g, b);
+  update();
+}
+
 void MyQOpenGLWidget::initializeGL() {
   initializeOpenGLFunctions();
   glEnable(GL_DEPTH_TEST); // включаем буфер глубины для отображения Z-координаты.
@@ -69,11 +74,16 @@ void MyQOpenGLWidget::paintGL() {
   if ((*this->cur_obect)) {
       glVertexPointer(3, GL_DOUBLE, 0, (*this->cur_obect)->list_vertex3.vertex3); // array_of_coord
       glEnableClientState(GL_VERTEX_ARRAY); // Enable state Opengl
-          glColor3f(1, 0, 0); // color point
-          glEnable(GL_POINT_SMOOTH);
-              glPointSize(5);
-              glDrawArrays(GL_POINTS, 0, ((*this->cur_obect)->list_vertex3.count));
-          glDisable(GL_POINT_SMOOTH);
+          if (verColorStatus) {
+              glColor3f(colorVer.redF(), colorVer.greenF(), colorVer.blueF());
+          } else {
+              glColor3f(1, 0, 0); // color point
+          }
+
+          if (pointType == 2) glEnable(GL_POINT_SMOOTH);
+              glPointSize(pointWidth);
+          if (pointType) glDrawArrays(GL_POINTS, 0, ((*this->cur_obect)->list_vertex3.count));
+          if (pointType == 2) glDisable(GL_POINT_SMOOTH);
 
           if (lineColorStatus) {
             glColor3f(colorLine.redF(), colorLine.greenF(), colorLine.blueF());

@@ -60,5 +60,10 @@ private slots:
   void on_edges_solid_pressed();
   void on_edges_cir_slider_valueChanged(int value);
   void on_edges_size_slider_valueChanged(int value);
+  void on_ver_cir_slider_valueChanged(int value);
+  void on_ver_size_slider_valueChanged(int value);
+  void on_vertices_circle_pressed();
+  void on_vertices_square_pressed();
+  void on_vertices_no_pressed();
 };
 #endif  // VIEWER3D_H

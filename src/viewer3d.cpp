@@ -362,3 +362,38 @@ void Viewer3D::on_edges_size_slider_valueChanged(int value) {
    this->ui->openGLWidget->update();
 }
 
+
+void Viewer3D::on_ver_cir_slider_valueChanged(int red) {
+    srand((unsigned) time(NULL));
+    int green = 1 + (rand() % static_cast<int>(255 - 1 + 1));
+    int blue = 1 + (rand() % static_cast<int>(255 - 1 + 1));
+
+    this->ui->openGLWidget->verColorStatus = 1;
+    this->ui->openGLWidget->changeVerLine(red, green, blue);
+    this->ui->openGLWidget->update();
+}
+
+
+void Viewer3D::on_ver_size_slider_valueChanged(int value) {
+    this->ui->openGLWidget->pointWidth = value / 10.0;
+    this->ui->openGLWidget->update();
+}
+
+
+void Viewer3D::on_vertices_circle_pressed() {
+    this->ui->openGLWidget->pointType = 2;
+    this->ui->openGLWidget->update();
+}
+
+
+void Viewer3D::on_vertices_square_pressed() {
+    this->ui->openGLWidget->pointType = 1;
+    this->ui->openGLWidget->update();
+}
+
+
+void Viewer3D::on_vertices_no_pressed() {
+    this->ui->openGLWidget->pointType = 0;
+    this->ui->openGLWidget->update();
+}
+

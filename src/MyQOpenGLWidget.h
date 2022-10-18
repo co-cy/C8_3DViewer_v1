@@ -31,6 +31,12 @@ class MyQOpenGLWidget : public QOpenGLWidget, public QOpenGLFunctions {
   float lineWidth = 1; // 1 default and min, 25.5 max value;
   QColor colorLine = QColor();
 
+  // Vertices interface
+  int verColorStatus = 0;
+  QColor colorVer = QColor();
+  float pointWidth = 5; // 1 default, min 5, 25.5 max value;
+  int pointType = 1; // 0 - disable, 1 - square, 2 - circle
+
   void mousePressEvent(QMouseEvent* event) override;
   void mouseReleaseEvent(QMouseEvent* event) override;
   void mouseMoveEvent(QMouseEvent* event) override;
@@ -64,6 +70,7 @@ class MyQOpenGLWidget : public QOpenGLWidget, public QOpenGLFunctions {
  public slots:
   void changeBackgroundColor(int r, int g, int b);
   void changeColorLine(int r, int g, int b);
+  void changeVerLine(int r, int g, int b);
 };
 
 #endif  // INC_3DVIEWER_V1_MYQOPENGLWIDGET_H
