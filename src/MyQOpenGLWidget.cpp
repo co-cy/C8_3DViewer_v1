@@ -76,7 +76,7 @@ void MyQOpenGLWidget::paintGL() {
       glLoadIdentity();
 
       if (perspective) {
-          glFrustum(-1, 1, -1, 1, 1, 3); // задает для перспективной проекции
+          glFrustum(-1, 1, -1, 1, 0.8, 3); // задает для перспективной проекции
           glTranslatef(0, 0, -1.4);
       }
 
@@ -101,7 +101,8 @@ void MyQOpenGLWidget::paintGL() {
 
           if (lineType) {
               glEnable(GL_LINE_STIPPLE);
-              glLineStipple(3, 0x00FF);
+              glLineStipple(2, 0x3333);
+//              glLineStipple(3, 0x00FF);
           }
           glLineWidth(lineWidth);
 
