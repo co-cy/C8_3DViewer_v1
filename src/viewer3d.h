@@ -59,5 +59,6 @@ private slots:
   void on_edges_dashed_pressed();
   void on_edges_solid_pressed();
   void on_edges_cir_slider_valueChanged(int value);
+  void on_edges_size_slider_valueChanged(int value);
 };
 #endif  // VIEWER3D_H

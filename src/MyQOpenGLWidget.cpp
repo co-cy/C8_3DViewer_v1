@@ -75,23 +75,17 @@ void MyQOpenGLWidget::paintGL() {
               glDrawArrays(GL_POINTS, 0, ((*this->cur_obect)->list_vertex3.count));
           glDisable(GL_POINT_SMOOTH);
 
-          std::cout << "redF = " << colorLine.redF() << std::endl;
-          std::cout << "greenF = " << colorLine.greenF() << std::endl;
-          std::cout << "blueF = " << colorLine.blueF() << std::endl;
-
-
           if (lineColorStatus) {
             glColor3f(colorLine.redF(), colorLine.greenF(), colorLine.blueF());
           } else {
             glColor3f(0.12, 0.69, 0.55); // color lines
           }
 
-
           if (lineType) {
               glEnable(GL_LINE_STIPPLE);
               glLineStipple(3, 0x00FF);
           }
-          glLineWidth(2);
+          glLineWidth(lineWidth);
 
           glDrawElements(GL_LINES, (*this->cur_obect)->list_polygon.size, GL_UNSIGNED_INT, (*this->cur_obect)->list_polygon.polygons);
 

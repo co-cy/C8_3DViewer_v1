@@ -356,3 +356,9 @@ void Viewer3D::on_edges_cir_slider_valueChanged(int red) {
     this->ui->openGLWidget->update();
 }
 
+
+void Viewer3D::on_edges_size_slider_valueChanged(int value) {
+   this->ui->openGLWidget->lineWidth = value / 10.0;
+   this->ui->openGLWidget->update();
+}
+

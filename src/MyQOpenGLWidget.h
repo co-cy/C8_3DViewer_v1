@@ -28,6 +28,7 @@ class MyQOpenGLWidget : public QOpenGLWidget, public QOpenGLFunctions {
   // Edges interface
   int lineType = 0; // for stripple
   int lineColorStatus = 0;
+  float lineWidth = 1; // 1 default and min, 25.5 max value;
   QColor colorLine = QColor();
 
   void mousePressEvent(QMouseEvent* event) override;
