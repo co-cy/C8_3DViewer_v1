@@ -65,5 +65,7 @@ private slots:
   void on_vertices_circle_pressed();
   void on_vertices_square_pressed();
   void on_vertices_no_pressed();
+  void on_perspective_pressed();
+  void on_orthographic_pressed();
 };
 #endif  // VIEWER3D_H

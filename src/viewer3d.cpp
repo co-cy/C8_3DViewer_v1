@@ -397,3 +397,15 @@ void Viewer3D::on_vertices_no_pressed() {
     this->ui->openGLWidget->update();
 }
 
+
+void Viewer3D::on_perspective_pressed() {
+    this->ui->openGLWidget->perspective = 1;
+    this->ui->openGLWidget->update();
+}
+
+
+void Viewer3D::on_orthographic_pressed() {
+    this->ui->openGLWidget->perspective = 0;
+    this->ui->openGLWidget->update();
+}
+

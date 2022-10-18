@@ -24,6 +24,8 @@ class MyQOpenGLWidget : public QOpenGLWidget, public QOpenGLFunctions {
   ~MyQOpenGLWidget() override;
 
    object3_t** cur_obect = nullptr;
+  // Projection interface
+  int perspective = 0;  // 1 for on perspective mode
 
   // Edges interface
   int lineType = 0; // for stripple

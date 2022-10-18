@@ -72,6 +72,14 @@ void MyQOpenGLWidget::paintGL() {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_TEST);
 
   if ((*this->cur_obect)) {
+      glMatrixMode(GL_PROJECTION);
+      glLoadIdentity();
+
+      if (perspective) {
+          glFrustum(-1, 1, -1, 1, 1, 3); // задает для перспективной проекции
+          glTranslatef(0, 0, -1.4);
+      }
+
       glVertexPointer(3, GL_DOUBLE, 0, (*this->cur_obect)->list_vertex3.vertex3); // array_of_coord
       glEnableClientState(GL_VERTEX_ARRAY); // Enable state Opengl
           if (verColorStatus) {
