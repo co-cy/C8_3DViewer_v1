@@ -284,6 +284,7 @@ void Viewer3D::updateRotate(QPoint shift) {
   vector3_t ang = {-(double)shift.y(), (double)shift.x(), 0};
 //  vector3_rotate(&ang, this->current_obj3->rotate);
 
+
   this->ignore_event = true;
   this->ui->rotate_x_spin->setValue(this->ui->rotate_x_spin->value() + ang.x);
   this->ui->rotate_y_spin->setValue(this->ui->rotate_y_spin->value() + ang.y);
@@ -342,6 +343,16 @@ void Viewer3D::on_edges_solid_pressed() {
 
 void Viewer3D::on_edges_dashed_pressed() {
     this->ui->openGLWidget->lineType = 1;
+    this->ui->openGLWidget->update();
+}
+
+void Viewer3D::on_edges_cir_slider_valueChanged(int red) {
+    srand((unsigned) time(NULL));
+    int green = 1 + (rand() % static_cast<int>(255 - 1 + 1));
+    int blue = 1 + (rand() % static_cast<int>(255 - 1 + 1));
+
+    this->ui->openGLWidget->lineColorStatus = 1;
+    this->ui->openGLWidget->changeColorLine(red, green, blue);
     this->ui->openGLWidget->update();
 }
 

@@ -24,7 +24,11 @@ class MyQOpenGLWidget : public QOpenGLWidget, public QOpenGLFunctions {
   ~MyQOpenGLWidget() override;
 
    object3_t** cur_obect = nullptr;
-  int lineType = 0; // 1 for stripple
+
+  // Edges interface
+  int lineType = 0; // for stripple
+  int lineColorStatus = 0;
+  QColor colorLine = QColor();
 
   void mousePressEvent(QMouseEvent* event) override;
   void mouseReleaseEvent(QMouseEvent* event) override;
@@ -45,11 +49,11 @@ class MyQOpenGLWidget : public QOpenGLWidget, public QOpenGLFunctions {
   // QOpenGLWidget interface
   QColor color = QColor();
   QOpenGLShaderProgram *prog = nullptr;
+
   void initializeGL() override;
   void paintGL() override;
 
  private:
-//    void toDefault();
 
  signals:
   void leftButtonMove(QPoint shift);
@@ -58,6 +62,7 @@ class MyQOpenGLWidget : public QOpenGLWidget, public QOpenGLFunctions {
 
  public slots:
   void changeBackgroundColor(int r, int g, int b);
+  void changeColorLine(int r, int g, int b);
 };
 
 #endif  // INC_3DVIEWER_V1_MYQOPENGLWIDGET_H
