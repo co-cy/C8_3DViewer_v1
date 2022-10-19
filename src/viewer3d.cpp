@@ -8,30 +8,28 @@ Viewer3D::Viewer3D(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::Viewer3D) {
   ui->setupUi(this);
 
-  this->setEnableTools(this->current_obj3);
-
   connect(ui->load_file, SIGNAL(clicked()), this, SLOT(load_file()));
 
   connect(ui->move_x_spin, SIGNAL(valueChanged(double)), this,
-          SLOT(obj3_move_x(double)));
+          SLOT(obj3_move()));
   connect(ui->move_y_spin, SIGNAL(valueChanged(double)), this,
-          SLOT(obj3_move_y(double)));
+          SLOT(obj3_move()));
   connect(ui->move_z_spin, SIGNAL(valueChanged(double)), this,
-          SLOT(obj3_move_z(double)));
+          SLOT(obj3_move()));
 
   connect(ui->rotate_x_spin, SIGNAL(valueChanged(double)), this,
-          SLOT(obj3_rotate_x(double)));
+          SLOT(obj3_rotate()));
   connect(ui->rotate_y_spin, SIGNAL(valueChanged(double)), this,
-          SLOT(obj3_rotate_y(double)));
+          SLOT(obj3_rotate()));
   connect(ui->rotate_z_spin, SIGNAL(valueChanged(double)), this,
-          SLOT(obj3_rotate_z(double)));
+          SLOT(obj3_rotate()));
 
   connect(ui->scale_x_spin, SIGNAL(valueChanged(double)), this,
-          SLOT(obj3_scale_x(double)));
+          SLOT(obj3_scale()));
   connect(ui->scale_y_spin, SIGNAL(valueChanged(double)), this,
-          SLOT(obj3_scale_y(double)));
+          SLOT(obj3_scale()));
   connect(ui->scale_z_spin, SIGNAL(valueChanged(double)), this,
-          SLOT(obj3_scale_z(double)));
+          SLOT(obj3_scale()));
 
   connect(ui->openGLWidget, SIGNAL(rightButtonMove(QPoint)), this,
           SLOT(updateShift(QPoint)));
@@ -46,6 +44,33 @@ Viewer3D::Viewer3D(QWidget *parent)
           SLOT(changeBackgroundColor()));
   connect(ui->color_blue_spin, SIGNAL(valueChanged(int)), this,
           SLOT(changeBackgroundColor()));
+
+  connect(ui->orthographic, SIGNAL(clicked()), this,
+          SLOT(changePerspective()));
+  connect(ui->perspective, SIGNAL(clicked()), this,
+          SLOT(changePerspective()));
+
+  connect(ui->edges_type_combo, SIGNAL(currentIndexChanged(int)), this,
+          SLOT(changeTypeEdges(int)));
+  connect(ui->edges_size_spin, SIGNAL(valueChanged(int)), this,
+          SLOT(changeSizeEdges(int)));
+  connect(ui->edges_red_spin, SIGNAL(valueChanged(int)), this,
+          SLOT(changeColorEdges()));
+  connect(ui->edges_green_spin, SIGNAL(valueChanged(int)), this,
+          SLOT(changeColorEdges()));
+  connect(ui->edges_blue_spin, SIGNAL(valueChanged(int)), this,
+          SLOT(changeColorEdges()));
+
+  connect(ui->vertex_type_combo, SIGNAL(currentIndexChanged(int)), this,
+          SLOT(changeTypeVertexes(int)));
+  connect(ui->vertex_size_spin, SIGNAL(valueChanged(int)), this,
+          SLOT(changeSizeVertexes(int)));
+  connect(ui->vertex_red_spin, SIGNAL(valueChanged(int)), this,
+          SLOT(changeColorVertexes()));
+  connect(ui->vertex_green_spin, SIGNAL(valueChanged(int)), this,
+          SLOT(changeColorVertexes()));
+  connect(ui->vertex_blue_spin, SIGNAL(valueChanged(int)), this,
+          SLOT(changeColorVertexes()));
 
   connect(ui->jpeg_button, SIGNAL(clicked()), this,
           SLOT(saveJpegImage()));
@@ -138,75 +163,33 @@ void Viewer3D::changeBackgroundColor() {
       this->ui->color_blue_spin->value());
 }
 
-void Viewer3D::obj3_move_x(double new_x) {
+void Viewer3D::obj3_move() {
   if (!this->current_obj3 || this->ignore_event) return;
 
-  double shift = new_x - this->current_obj3->shift.x;
-  if (fabs(shift) > 0.0001) object3_move(this->current_obj3, {shift, 0, 0});
+  double shift_x = this->ui->move_x_spin->value() - this->current_obj3->shift.x;
+  double shift_y = this->ui->move_y_spin->value() - this->current_obj3->shift.y;
+  double shift_z = this->ui->move_z_spin->value() - this->current_obj3->shift.z;
+  object3_move(this->current_obj3, {shift_x, shift_y, shift_z});
   this->ui->openGLWidget->update();
 }
 
-void Viewer3D::obj3_move_y(double new_y) {
+void Viewer3D::obj3_rotate() {
   if (!this->current_obj3 || this->ignore_event) return;
 
-  double shift = new_y - this->current_obj3->shift.y;
-  if (fabs(shift) > 0.0001) object3_move(this->current_obj3, {0, shift, 0});
+  double shift_x = this->ui->rotate_x_spin->value() - this->current_obj3->rotate.x;
+  double shift_y = this->ui->rotate_y_spin->value() - this->current_obj3->rotate.y;
+  double shift_z = this->ui->rotate_z_spin->value() - this->current_obj3->rotate.z;
+  object3_rotate(this->current_obj3, {shift_x, shift_y, shift_z});
   this->ui->openGLWidget->update();
 }
 
-void Viewer3D::obj3_move_z(double new_z) {
+void Viewer3D::obj3_scale() {
   if (!this->current_obj3 || this->ignore_event) return;
 
-  double shift = new_z - this->current_obj3->shift.z;
-  if (fabs(shift) > 0.0001) object3_move(this->current_obj3, {0, 0, shift});
-  this->ui->openGLWidget->update();
-}
-
-void Viewer3D::obj3_rotate_x(double new_x) {
-  if (!this->current_obj3 || this->ignore_event) return;
-
-  double shift = new_x - this->current_obj3->rotate.x;
-  if (fabs(shift) > 0.0001) object3_rotate(this->current_obj3, {shift, 0, 0});
-  this->ui->openGLWidget->update();
-}
-
-void Viewer3D::obj3_rotate_y(double new_y) {
-  if (!this->current_obj3 || this->ignore_event) return;
-
-  double shift = new_y - this->current_obj3->rotate.y;
-  if (fabs(shift) > 0.0001) object3_rotate(this->current_obj3, {0, shift, 0});
-  this->ui->openGLWidget->update();
-}
-
-void Viewer3D::obj3_rotate_z(double new_z) {
-  if (!this->current_obj3 || this->ignore_event) return;
-
-  double shift = new_z - this->current_obj3->rotate.z;
-  if (fabs(shift) > 0.0001) object3_rotate(this->current_obj3, {0, 0, shift});
-  this->ui->openGLWidget->update();
-}
-
-void Viewer3D::obj3_scale_x(double new_x) {
-  if (!this->current_obj3 || this->ignore_event) return;
-
-  double shift = new_x / this->current_obj3->scale.x;
-  if (fabs(shift) > 0.0001) object3_scale(this->current_obj3, {shift, 0, 0});
-  this->ui->openGLWidget->update();
-}
-
-void Viewer3D::obj3_scale_y(double new_y) {
-  if (!this->current_obj3 || this->ignore_event) return;
-
-  double shift = new_y / this->current_obj3->scale.y;
-  if (fabs(shift) > 0.0001) object3_scale(this->current_obj3, {0, shift, 0});
-  this->ui->openGLWidget->update();
-}
-
-void Viewer3D::obj3_scale_z(double new_z) {
-  if (!this->current_obj3 || this->ignore_event) return;
-
-  double shift = new_z / this->current_obj3->scale.z;
-  if (fabs(shift) > 0.0001) object3_scale(this->current_obj3, {0, 0, shift});
+  double shift_x = this->ui->scale_x_spin->value() / this->current_obj3->scale.x;
+  double shift_y = this->ui->scale_y_spin->value() / this->current_obj3->scale.y;
+  double shift_z = this->ui->scale_z_spin->value() / this->current_obj3->scale.z;
+  object3_scale(this->current_obj3, {shift_x, shift_y, shift_z});
   this->ui->openGLWidget->update();
 }
 
@@ -240,26 +223,6 @@ void Viewer3D::load_file() {
                                        this->ui->scale_z_spin->value()});
     this->ui->openGLWidget->update();
   }
-
-  this->setEnableTools(this->current_obj3);
-}
-
-void Viewer3D::setEnableTools(bool state) {
-  this->ui->move_x_spin->setEnabled(state);
-  this->ui->move_y_spin->setEnabled(state);
-  this->ui->move_z_spin->setEnabled(state);
-  this->ui->rotate_x_spin->setEnabled(state);
-  this->ui->rotate_y_spin->setEnabled(state);
-  this->ui->rotate_z_spin->setEnabled(state);
-  this->ui->scale_x_spin->setEnabled(state);
-  this->ui->scale_y_spin->setEnabled(state);
-  this->ui->scale_z_spin->setEnabled(state);
-  this->ui->color_red_spin->setEnabled(state);
-  this->ui->color_green_spin->setEnabled(state);
-  this->ui->color_blue_spin->setEnabled(state);
-  this->ui->color_red_slider->setEnabled(state);
-  this->ui->color_green_slider->setEnabled(state);
-  this->ui->color_blue_slider->setEnabled(state);
 }
 
 void Viewer3D::updateShift(QPoint shift) {
@@ -335,77 +298,47 @@ void Viewer3D::saveGifImage() {
 
 }
 
-void Viewer3D::on_edges_solid_pressed() {
-    this->ui->openGLWidget->lineType = 0;
+void Viewer3D::changeTypeEdges(int index_type) {
+    this->ui->openGLWidget->lineType = index_type;
     this->ui->openGLWidget->update();
 }
 
-
-void Viewer3D::on_edges_dashed_pressed() {
-    this->ui->openGLWidget->lineType = 1;
+void Viewer3D::changeSizeEdges(int shift) {
+    this->ui->openGLWidget->lineWidth = shift / 10.0;
     this->ui->openGLWidget->update();
 }
 
-void Viewer3D::on_edges_cir_slider_valueChanged(int red) {
-    srand((unsigned) time(NULL));
-    int green = 1 + (rand() % static_cast<int>(255 - 1 + 1));
-    int blue = 1 + (rand() % static_cast<int>(255 - 1 + 1));
-
+void Viewer3D::changeColorEdges() {
     this->ui->openGLWidget->lineColorStatus = 1;
-    this->ui->openGLWidget->changeColorLine(red, green, blue);
+    this->ui->openGLWidget->changeColorLine(
+                this->ui->edges_red_spin->value(),
+                this->ui->edges_green_spin->value(),
+                this->ui->edges_blue_spin->value());
     this->ui->openGLWidget->update();
 }
 
 
-void Viewer3D::on_edges_size_slider_valueChanged(int value) {
-   this->ui->openGLWidget->lineWidth = value / 10.0;
-   this->ui->openGLWidget->update();
+void Viewer3D::changeTypeVertexes(int index_type) {
+    this->ui->openGLWidget->pointType = index_type;
+    this->ui->openGLWidget->update();
 }
 
+void Viewer3D::changeSizeVertexes(int shift) {
+    this->ui->openGLWidget->pointWidth = shift / 10.0;
+    this->ui->openGLWidget->update();
+}
 
-void Viewer3D::on_ver_cir_slider_valueChanged(int red) {
-    srand((unsigned) time(NULL));
-    int green = 1 + (rand() % static_cast<int>(255 - 1 + 1));
-    int blue = 1 + (rand() % static_cast<int>(255 - 1 + 1));
-
+void Viewer3D::changeColorVertexes() {
     this->ui->openGLWidget->verColorStatus = 1;
-    this->ui->openGLWidget->changeVerLine(red, green, blue);
+    this->ui->openGLWidget->changeVerLine(
+                this->ui->vertex_red_spin->value(),
+                this->ui->vertex_green_spin->value(),
+                this->ui->vertex_blue_spin->value());
     this->ui->openGLWidget->update();
 }
 
-
-void Viewer3D::on_ver_size_slider_valueChanged(int value) {
-    this->ui->openGLWidget->pointWidth = value / 10.0;
-    this->ui->openGLWidget->update();
-}
-
-
-void Viewer3D::on_vertices_circle_pressed() {
-    this->ui->openGLWidget->pointType = 2;
-    this->ui->openGLWidget->update();
-}
-
-
-void Viewer3D::on_vertices_square_pressed() {
-    this->ui->openGLWidget->pointType = 1;
-    this->ui->openGLWidget->update();
-}
-
-
-void Viewer3D::on_vertices_no_pressed() {
-    this->ui->openGLWidget->pointType = 0;
-    this->ui->openGLWidget->update();
-}
-
-
-void Viewer3D::on_perspective_pressed() {
-    this->ui->openGLWidget->perspective = 1;
-    this->ui->openGLWidget->update();
-}
-
-
-void Viewer3D::on_orthographic_pressed() {
-    this->ui->openGLWidget->perspective = 0;
+void Viewer3D::changePerspective() {
+    this->ui->openGLWidget->perspective = !this->ui->orthographic->isChecked();
     this->ui->openGLWidget->update();
 }
 
