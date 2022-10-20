@@ -345,6 +345,49 @@ void Viewer3D::saveBmpImage() {
 }
 
 void Viewer3D::saveGifImage() {
+    gif = new QGifImage;
+    gif->setDefaultDelay(1000 / gifFps);
+    startTime = 0, tmpTime = 1000 / gifFps;
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(oneGif()));
+    timer->start(1000 / gifFps);
+}
+
+void Viewer3D::oneGif() {
+    if (startTime == tmpTime) {
+        QPixmap screenGIF(this->ui->openGLWidget->size());  // *2
+        //        screenGIF.setDevicePixelRatio(2);  // improves quality. mult the
+        //        size by 2 line above ^
+        this->ui->openGLWidget->render(&screenGIF);
+        QImage image;
+        image = screenGIF.toImage();
+        gif->addFrame(image, 1000 / gifFps);
+        timePrint = (float)startTime / 1e3;  // GIF time in seconds
+        //        with 0.1 second precision (50 updates)
+//        ui->Counter->setNum((int)(timePrint + 1));
+        tmpTime += 1000 / gifFps;
+      }
+      if (startTime == 1000 * gifLength) {
+        time_t now = time(0);
+        tm *time = localtime(&now);
+        QDir d = QFileInfo("/Users/breajacq/Projects/C_Projects/C8_3DViewer_v1.0-0/src/viewer3d.cpp").absoluteDir();
+        d.setPath(QDir::cleanPath(d.filePath(QStringLiteral(".."))));
+        QString path = d.path();
+//        std::string str = path.toStdString();
+//        std::cout << "path = " << str << std::endl;
+        QString name = path + "/src/gifs/" + QString::number(time->tm_hour) + "-" +
+                       QString::number(time->tm_min) + "-" +
+                       QString::number(time->tm_sec) + ".gif";
+        gif->save(name);
+        free(gif);
+
+        timer->stop();
+//        this->ui->gif_label->setText("");
+      }
+      startTime += 1000 / gifFps;
+//      std::cout << "oneGIF" << std::endl;
+
+
 
 }
 
@@ -389,4 +432,3 @@ void Viewer3D::changePerspective() {
     this->ui->openGLWidget->perspective = !this->ui->orthographic->isChecked();
     this->ui->openGLWidget->update();
 }
-

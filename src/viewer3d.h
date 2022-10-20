@@ -3,8 +3,11 @@
 
 #include <QMainWindow>
 
- #include <iostream>
+#include <iostream>
 #include "./parser/core.h"
+#include "QtGifImage-master/src/gifimage/qgifimage.h"
+#include <QTimer>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,10 +24,17 @@ class Viewer3D : public QMainWindow {
 
  private:
   Ui::Viewer3D *ui;
+  int startTime, tmpTime;
+  float timePrint;
+  const int gifFps = 10, gifLength = 5;
+  QTimer* timer;
+  QGifImage* gif;
 
  protected:
   object3_t *current_obj3 = nullptr;
   bool ignore_event = false;
+
+  void setEnableTools(bool state);
 
   void loadSettings();
   void saveSettings();
@@ -55,5 +65,8 @@ class Viewer3D : public QMainWindow {
   void saveJpegImage();
   void saveBmpImage();
   void saveGifImage();
+
+ private slots:
+  void oneGif();
 };
 #endif  // VIEWER3D_H
