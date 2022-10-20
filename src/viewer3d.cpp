@@ -84,69 +84,106 @@ Viewer3D::Viewer3D(QWidget *parent)
 }
 
 void Viewer3D::loadSettings() {
-//  FILE* file;
-//  if (fopen_s(&file, "settings.my", "r")) return;
+  FILE* file = fopen("settings.my", "r");
+  if (!file) return;
 
-//  double d_tmp;
-//  int int_tmp;
-//  if (!fscanf_s(file, "%Lf", &d_tmp))
-//    return;
-//  this->ui->move_x_spin->setValue(d_tmp);
-//  if (!fscanf_s(file, "%Lf", &d_tmp))
-//    return;
-//  this->ui->move_y_spin->setValue(d_tmp);
-//  if (!fscanf_s(file, "%Lf", &d_tmp))
-//    return;
-//  this->ui->move_z_spin->setValue(d_tmp);
-//  if (!fscanf_s(file, "%Lf", &d_tmp))
-//    return;
-//  this->ui->rotate_x_spin->setValue(d_tmp);
-//  if (!fscanf_s(file, "%Lf", &d_tmp))
-//    return;
-//  this->ui->rotate_y_spin->setValue(d_tmp);
-//  if (!fscanf_s(file, "%Lf", &d_tmp))
-//    return;
-//  this->ui->rotate_z_spin->setValue(d_tmp);
-//  if (!fscanf_s(file, "%Lf", &d_tmp))
-//    return;
-//  this->ui->scale_x_spin->setValue(d_tmp);
-//  if (!fscanf_s(file, "%Lf", &d_tmp))
-//    return;
-//  this->ui->scale_y_spin->setValue(d_tmp);
-//  if (!fscanf_s(file, "%Lf", &d_tmp))
-//    return;
-//  this->ui->scale_z_spin->setValue(d_tmp);
-//  if (!fscanf_s(file, "%u", &int_tmp))
-//    return;
-//  this->ui->color_red_spin->setValue(int_tmp);
-//  if (!fscanf_s(file, "%u", &int_tmp))
-//    return;
-//  this->ui->color_green_spin->setValue(int_tmp);
-//  if (!fscanf_s(file, "%u", &int_tmp))
-//    return;
-//  this->ui->color_blue_spin->setValue(int_tmp);
+  double tmp_d;
+  int tmp_i;
 
-//  fclose(file);
+  if (!fscanf(file, "%lf", &tmp_d)) return;
+  this->ui->move_x_spin->setValue(tmp_d);
+  if (!fscanf(file, "%lf", &tmp_d)) return;
+  this->ui->move_y_spin->setValue(tmp_d);
+  if (!fscanf(file, "%lf", &tmp_d)) return;
+  this->ui->move_z_spin->setValue(tmp_d);
+
+  if (!fscanf(file, "%lf", &tmp_d)) return;
+  this->ui->rotate_x_spin->setValue(tmp_d);
+  if (!fscanf(file, "%lf", &tmp_d)) return;
+  this->ui->rotate_y_spin->setValue(tmp_d);
+  if (!fscanf(file, "%lf", &tmp_d)) return;
+  this->ui->rotate_z_spin->setValue(tmp_d);
+
+  if (!fscanf(file, "%lf", &tmp_d)) return;
+  this->ui->scale_x_spin->setValue(tmp_d);
+  if (!fscanf(file, "%lf", &tmp_d)) return;
+  this->ui->scale_y_spin->setValue(tmp_d);
+  if (!fscanf(file, "%lf", &tmp_d)) return;
+  this->ui->scale_z_spin->setValue(tmp_d);
+
+  if (!fscanf(file, "%d", &tmp_i)) return;
+  this->ui->color_red_spin->setValue(tmp_i);
+  if (!fscanf(file, "%d", &tmp_i)) return;
+  this->ui->color_green_spin->setValue(tmp_i);
+  if (!fscanf(file, "%d", &tmp_i)) return;
+  this->ui->color_blue_spin->setValue(tmp_i);
+
+  if (!fscanf(file, "%d", &tmp_i)) return;
+  if (tmp_i)
+    this->ui->perspective->setChecked(true);
+  else
+    this->ui->orthographic->setChecked(true);
+
+  if (!fscanf(file, "%d", &tmp_i)) return;
+  this->ui->edges_type_combo->setCurrentIndex(tmp_i);
+  if (!fscanf(file, "%d", &tmp_i)) return;
+  this->ui->edges_size_spin->setValue(tmp_i);
+  if (!fscanf(file, "%d", &tmp_i)) return;
+  this->ui->edges_red_spin->setValue(tmp_i);
+  if (!fscanf(file, "%d", &tmp_i)) return;
+  this->ui->edges_green_spin->setValue(tmp_i);
+  if (!fscanf(file, "%d", &tmp_i)) return;
+  this->ui->edges_blue_spin->setValue(tmp_i);
+
+  if (!fscanf(file, "%d", &tmp_i)) return;
+  this->ui->vertex_type_combo->setCurrentIndex(tmp_i);
+  if (!fscanf(file, "%d", &tmp_i)) return;
+  this->ui->vertex_size_spin->setValue(tmp_i);
+  if (!fscanf(file, "%d", &tmp_i)) return;
+  this->ui->vertex_red_spin->setValue(tmp_i);
+  if (!fscanf(file, "%d", &tmp_i)) return;
+  this->ui->vertex_green_spin->setValue(tmp_i);
+  if (!fscanf(file, "%d", &tmp_i)) return;
+  this->ui->vertex_blue_spin->setValue(tmp_i);
+
+  fclose(file);
 }
 
 void Viewer3D::saveSettings() {
-//  FILE* file;
-//  if (fopen_s(&file, "settings.my", "w")) return;
-//  fprintf_s(file, "%Lf %Lf %Lf %Lf %Lf %Lf %Lf %Lf %Lf %u %u %u",
-//            this->ui->move_x_spin->value(),
-//            this->ui->move_y_spin->value(),
-//            this->ui->move_z_spin->value(),
-//            this->ui->rotate_x_spin->value(),
-//            this->ui->rotate_y_spin->value(),
-//            this->ui->rotate_z_spin->value(),
-//            this->ui->scale_x_spin->value(),
-//            this->ui->scale_y_spin->value(),
-//            this->ui->scale_z_spin->value(),
-//            this->ui->color_red_spin->value(),
-//            this->ui->color_green_spin->value(),
-//            this->ui->color_blue_spin->value()
-//                );
-//  fclose(file);
+  FILE* file = fopen("settings.my", "w");
+  if (!file) return;
+
+  fprintf(file, "%lf ", this->ui->move_x_spin->value());
+  fprintf(file, "%lf ", this->ui->move_y_spin->value());
+  fprintf(file, "%lf ", this->ui->move_z_spin->value());
+
+  fprintf(file, "%lf ", this->ui->rotate_x_spin->value());
+  fprintf(file, "%lf ", this->ui->rotate_y_spin->value());
+  fprintf(file, "%lf ", this->ui->rotate_z_spin->value());
+
+  fprintf(file, "%lf ", this->ui->scale_x_spin->value());
+  fprintf(file, "%lf ", this->ui->scale_y_spin->value());
+  fprintf(file, "%lf ", this->ui->scale_z_spin->value());
+
+  fprintf(file, "%d ", this->ui->color_red_spin->value());
+  fprintf(file, "%d ", this->ui->color_green_spin->value());
+  fprintf(file, "%d ", this->ui->color_blue_spin->value());
+
+  fprintf(file, "%d ", !this->ui->orthographic->isChecked());
+
+  fprintf(file, "%d ", this->ui->edges_type_combo->currentIndex());
+  fprintf(file, "%d ", this->ui->edges_size_spin->value());
+  fprintf(file, "%d ", this->ui->edges_red_spin->value());
+  fprintf(file, "%d ", this->ui->edges_green_spin->value());
+  fprintf(file, "%d ", this->ui->edges_blue_spin->value());
+
+  fprintf(file, "%d ", this->ui->vertex_type_combo->currentIndex());
+  fprintf(file, "%d ", this->ui->vertex_size_spin->value());
+  fprintf(file, "%d ", this->ui->vertex_red_spin->value());
+  fprintf(file, "%d ", this->ui->vertex_green_spin->value());
+  fprintf(file, "%d ", this->ui->vertex_blue_spin->value());
+
+  fclose(file);
 }
 
 Viewer3D::~Viewer3D() {
@@ -314,7 +351,6 @@ void Viewer3D::changeColorEdges() {
                 this->ui->edges_red_spin->value(),
                 this->ui->edges_green_spin->value(),
                 this->ui->edges_blue_spin->value());
-    this->ui->openGLWidget->update();
 }
 
 
@@ -334,7 +370,6 @@ void Viewer3D::changeColorVertexes() {
                 this->ui->vertex_red_spin->value(),
                 this->ui->vertex_green_spin->value(),
                 this->ui->vertex_blue_spin->value());
-    this->ui->openGLWidget->update();
 }
 
 void Viewer3D::changePerspective() {

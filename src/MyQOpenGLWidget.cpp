@@ -124,8 +124,3 @@ void MyQOpenGLWidget::saveJpegImage(const QString& filename) {
   this->grabFramebuffer().save(filename, "jpeg");
 }
 
-void MyQOpenGLWidget::shift(double x, double y, double z) {
-//    glTranslatef(x, y, z);
-}
-
-
