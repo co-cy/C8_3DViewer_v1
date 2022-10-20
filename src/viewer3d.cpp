@@ -81,6 +81,19 @@ Viewer3D::Viewer3D(QWidget *parent)
 
   this->loadSettings();
   ui->openGLWidget->cur_obect = &(this->current_obj3);
+
+  changeBackgroundColor();
+
+  changeTypeEdges(ui->edges_type_combo->currentIndex());
+  changeSizeEdges(ui->edges_size_spin->value());
+  changeColorEdges();
+
+
+  changeTypeVertexes(ui->vertex_type_combo->currentIndex());
+  changeSizeVertexes(ui->vertex_size_spin->value());
+  changeColorVertexes();
+
+  changePerspective();
 }
 
 void Viewer3D::loadSettings() {
