@@ -17,6 +17,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets OpenGLWidgets Core OpenGL)
 
+#DEFINES += CMAKE_ABSOLUTE_DESTINATION_FILES = ${_PRO_FIL}
+
 set(PROJECT_SOURCES
         main.cpp
         viewer3d.cpp
@@ -36,6 +38,17 @@ set(PROJECT_SOURCES
         struct/vector3/add.c
         struct/vector3/rotate.c
         struct/vector3/vector3.h
+
+        QtGifImage-master/src/3rdParty/giflib/dgif_lib.c
+        QtGifImage-master/src/3rdParty/giflib/egif_lib.c
+        QtGifImage-master/src/3rdParty/giflib/gif_err.c
+        QtGifImage-master/src/3rdParty/giflib/gif_hash.c
+        QtGifImage-master/src/3rdParty/giflib/gifalloc.c
+        QtGifImage-master/src/3rdParty/giflib/quantize.c
+        QtGifImage-master/src/gifimage/qgifglobal.h
+        QtGifImage-master/src/gifimage/qgifimage.h
+        QtGifImage-master/src/gifimage/qgifimage_p.h
+        QtGifImage-master/src/gifimage/qgifimage.cpp
         )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

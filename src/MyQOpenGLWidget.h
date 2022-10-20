@@ -63,7 +63,6 @@ class MyQOpenGLWidget : public QOpenGLWidget, public QOpenGLFunctions {
   void paintGL() override;
 
  private:
-
  signals:
   void leftButtonMove(QPoint shift);
   void rightButtonMove(QPoint shift);

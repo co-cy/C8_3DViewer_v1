@@ -102,7 +102,6 @@ void MyQOpenGLWidget::paintGL() {
           if (lineType) {
               glEnable(GL_LINE_STIPPLE);
               glLineStipple(2, 0x3333);
-//              glLineStipple(3, 0x00FF);
           }
           glLineWidth(lineWidth);
 
