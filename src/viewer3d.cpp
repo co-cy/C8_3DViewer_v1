@@ -1,7 +1,6 @@
 #include "viewer3d.h"
 
 #include <QFileDialog>
-#include <QFileInfo>
 
 #include "./ui_viewer3d.h"
 
@@ -314,8 +313,8 @@ void Viewer3D::updateScale(int y) {
 }
 
 void Viewer3D::saveJpegImage() {
-  QString fileName =
-      QFileDialog::getSaveFileName(this, "Save file", nullptr, "Image(*.jpeg)");
+  QString fileName = QFileDialog::getSaveFileName(this, "Сохранить файл",
+                                                  nullptr, "Image(*.jpeg)");
   if (fileName.isNull()) return;
   this->ui->openGLWidget->saveJpegImage(fileName);
 }
@@ -425,15 +424,5 @@ void Viewer3D::on_vertices_square_pressed() {
 
 void Viewer3D::on_vertices_no_pressed() {
   this->ui->openGLWidget->pointType = 0;
-  this->ui->openGLWidget->update();
-}
-
-void Viewer3D::on_perspective_pressed() {
-  this->ui->openGLWidget->perspective = 1;
-  this->ui->openGLWidget->update();
-}
-
-void Viewer3D::on_orthographic_pressed() {
-  this->ui->openGLWidget->perspective = 0;
   this->ui->openGLWidget->update();
 }

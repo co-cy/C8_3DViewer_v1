@@ -101,6 +101,7 @@ void MyQOpenGLWidget::paintGL() {
 
           if (lineType) {
 <<<<<<< HEAD
+<<<<<<< HEAD
               glEnable(GL_LINE_STIPPLE);
               glLineStipple(2, 0x3333);
           }
@@ -115,6 +116,13 @@ void MyQOpenGLWidget::paintGL() {
               }
               glLineWidth(lineWidth);
 >>>>>>> 0f5b5b55365480ef7aab23011af11cf09c5ec114
+=======
+              if (lineType == 2) {
+                  glEnable(GL_LINE_STIPPLE);
+                  glLineStipple(2, 0x3333);
+              }
+              glLineWidth(lineWidth);
+>>>>>>> ef0bf0f76bfc9ea8fc694e43565e8205064b7773
 
               glDrawElements(GL_LINES, (*this->cur_obect)->list_polygon.size, GL_UNSIGNED_INT, (*this->cur_obect)->list_polygon.polygons);
 

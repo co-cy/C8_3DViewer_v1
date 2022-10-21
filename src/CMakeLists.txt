@@ -42,6 +42,7 @@ set(PROJECT_SOURCES
         QtGifImage-master/src/3rdParty/giflib/dgif_lib.c
         QtGifImage-master/src/3rdParty/giflib/egif_lib.c
         QtGifImage-master/src/3rdParty/giflib/gif_err.c
+        QtGifImage-master/src/3rdParty/giflib/gif_lib.h
         QtGifImage-master/src/3rdParty/giflib/gif_hash.c
         QtGifImage-master/src/3rdParty/giflib/gifalloc.c
         QtGifImage-master/src/3rdParty/giflib/quantize.c

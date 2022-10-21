@@ -34,6 +34,8 @@ class Viewer3D : public QMainWindow {
   object3_t *current_obj3 = nullptr;
   bool ignore_event = false;
 
+  void setEnableTools(bool state);
+
   void loadSettings();
   void saveSettings();
 
@@ -64,19 +66,7 @@ class Viewer3D : public QMainWindow {
   void saveBmpImage();
   void saveGifImage();
 
-private slots:
-  void on_edges_dashed_pressed();
-  void on_edges_solid_pressed();
-  void on_edges_cir_slider_valueChanged(int value);
-  void on_edges_size_slider_valueChanged(int value);
-  void on_ver_cir_slider_valueChanged(int value);
-  void on_ver_size_slider_valueChanged(int value);
-  void on_vertices_circle_pressed();
-  void on_vertices_square_pressed();
-  void on_vertices_no_pressed();
-  void on_perspective_pressed();
-  void on_orthographic_pressed();
+ private slots:
   void oneGif();
-
 };
 #endif  // VIEWER3D_H
