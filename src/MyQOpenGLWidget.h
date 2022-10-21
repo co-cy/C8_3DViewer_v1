@@ -46,7 +46,6 @@ class MyQOpenGLWidget : public QOpenGLWidget, public QOpenGLFunctions {
 
   void saveBmpImage(const QString& filename);
   void saveJpegImage(const QString& filename);
-  void shift(double x, double y, double z);
 
  protected:
   bool leftButtonPress = false;

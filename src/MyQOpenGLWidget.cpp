@@ -69,7 +69,7 @@ void MyQOpenGLWidget::initializeGL() {
 }
 void MyQOpenGLWidget::paintGL() {
   glClearColor(color.redF(), color.greenF(), color.blueF(), 1.0f);
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_TEST);
+  glClear(GL_COLOR_BUFFER_BIT);
 
   if ((*this->cur_obect)) {
       glMatrixMode(GL_PROJECTION);
@@ -100,15 +100,26 @@ void MyQOpenGLWidget::paintGL() {
           }
 
           if (lineType) {
+<<<<<<< HEAD
               glEnable(GL_LINE_STIPPLE);
               glLineStipple(2, 0x3333);
           }
           glLineWidth(lineWidth);
 
           glDrawElements(GL_LINES, (*this->cur_obect)->list_polygon.size, GL_UNSIGNED_INT, (*this->cur_obect)->list_polygon.polygons);
+=======
+              if (lineType == 2) {
+                  glEnable(GL_LINE_STIPPLE);
+                  glLineStipple(2, 0x3333);
+    //              glLineStipple(3, 0x00FF);
+              }
+              glLineWidth(lineWidth);
+>>>>>>> 0f5b5b55365480ef7aab23011af11cf09c5ec114
 
-          if (lineType) glDisable(GL_LINE_STIPPLE);
+              glDrawElements(GL_LINES, (*this->cur_obect)->list_polygon.size, GL_UNSIGNED_INT, (*this->cur_obect)->list_polygon.polygons);
 
+              if (lineType == 2) glDisable(GL_LINE_STIPPLE);
+          }
 
       glDisableClientState(GL_VERTEX_ARRAY); // Disable state Opengl
   }
@@ -121,9 +132,4 @@ void MyQOpenGLWidget::saveBmpImage(const QString& filename) {
 void MyQOpenGLWidget::saveJpegImage(const QString& filename) {
   this->grabFramebuffer().save(filename, "jpeg");
 }
-
-void MyQOpenGLWidget::shift(double x, double y, double z) {
-//    glTranslatef(x, y, z);
-}
-
 
