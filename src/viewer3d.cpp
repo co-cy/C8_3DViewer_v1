@@ -48,81 +48,78 @@ Viewer3D::Viewer3D(QWidget *parent)
   connect(ui->color_blue_spin, SIGNAL(valueChanged(int)), this,
           SLOT(changeBackgroundColor()));
 
-  connect(ui->jpeg_button, SIGNAL(clicked()), this,
-          SLOT(saveJpegImage()));
-  connect(ui->bmp_button, SIGNAL(clicked()), this,
-          SLOT(saveBmpImage()));
-  connect(ui->gif_button, SIGNAL(clicked()), this,
-          SLOT(saveGifImage()));
+  connect(ui->jpeg_button, SIGNAL(clicked()), this, SLOT(saveJpegImage()));
+  connect(ui->bmp_button, SIGNAL(clicked()), this, SLOT(saveBmpImage()));
+  connect(ui->gif_button, SIGNAL(clicked()), this, SLOT(saveGifImage()));
 
   this->loadSettings();
   ui->openGLWidget->cur_obect = &(this->current_obj3);
 }
 
 void Viewer3D::loadSettings() {
-//  FILE* file;
-//  if (fopen_s(&file, "settings.my", "r")) return;
+  //  FILE* file;
+  //  if (fopen_s(&file, "settings.my", "r")) return;
 
-//  double d_tmp;
-//  int int_tmp;
-//  if (!fscanf_s(file, "%Lf", &d_tmp))
-//    return;
-//  this->ui->move_x_spin->setValue(d_tmp);
-//  if (!fscanf_s(file, "%Lf", &d_tmp))
-//    return;
-//  this->ui->move_y_spin->setValue(d_tmp);
-//  if (!fscanf_s(file, "%Lf", &d_tmp))
-//    return;
-//  this->ui->move_z_spin->setValue(d_tmp);
-//  if (!fscanf_s(file, "%Lf", &d_tmp))
-//    return;
-//  this->ui->rotate_x_spin->setValue(d_tmp);
-//  if (!fscanf_s(file, "%Lf", &d_tmp))
-//    return;
-//  this->ui->rotate_y_spin->setValue(d_tmp);
-//  if (!fscanf_s(file, "%Lf", &d_tmp))
-//    return;
-//  this->ui->rotate_z_spin->setValue(d_tmp);
-//  if (!fscanf_s(file, "%Lf", &d_tmp))
-//    return;
-//  this->ui->scale_x_spin->setValue(d_tmp);
-//  if (!fscanf_s(file, "%Lf", &d_tmp))
-//    return;
-//  this->ui->scale_y_spin->setValue(d_tmp);
-//  if (!fscanf_s(file, "%Lf", &d_tmp))
-//    return;
-//  this->ui->scale_z_spin->setValue(d_tmp);
-//  if (!fscanf_s(file, "%u", &int_tmp))
-//    return;
-//  this->ui->color_red_spin->setValue(int_tmp);
-//  if (!fscanf_s(file, "%u", &int_tmp))
-//    return;
-//  this->ui->color_green_spin->setValue(int_tmp);
-//  if (!fscanf_s(file, "%u", &int_tmp))
-//    return;
-//  this->ui->color_blue_spin->setValue(int_tmp);
+  //  double d_tmp;
+  //  int int_tmp;
+  //  if (!fscanf_s(file, "%Lf", &d_tmp))
+  //    return;
+  //  this->ui->move_x_spin->setValue(d_tmp);
+  //  if (!fscanf_s(file, "%Lf", &d_tmp))
+  //    return;
+  //  this->ui->move_y_spin->setValue(d_tmp);
+  //  if (!fscanf_s(file, "%Lf", &d_tmp))
+  //    return;
+  //  this->ui->move_z_spin->setValue(d_tmp);
+  //  if (!fscanf_s(file, "%Lf", &d_tmp))
+  //    return;
+  //  this->ui->rotate_x_spin->setValue(d_tmp);
+  //  if (!fscanf_s(file, "%Lf", &d_tmp))
+  //    return;
+  //  this->ui->rotate_y_spin->setValue(d_tmp);
+  //  if (!fscanf_s(file, "%Lf", &d_tmp))
+  //    return;
+  //  this->ui->rotate_z_spin->setValue(d_tmp);
+  //  if (!fscanf_s(file, "%Lf", &d_tmp))
+  //    return;
+  //  this->ui->scale_x_spin->setValue(d_tmp);
+  //  if (!fscanf_s(file, "%Lf", &d_tmp))
+  //    return;
+  //  this->ui->scale_y_spin->setValue(d_tmp);
+  //  if (!fscanf_s(file, "%Lf", &d_tmp))
+  //    return;
+  //  this->ui->scale_z_spin->setValue(d_tmp);
+  //  if (!fscanf_s(file, "%u", &int_tmp))
+  //    return;
+  //  this->ui->color_red_spin->setValue(int_tmp);
+  //  if (!fscanf_s(file, "%u", &int_tmp))
+  //    return;
+  //  this->ui->color_green_spin->setValue(int_tmp);
+  //  if (!fscanf_s(file, "%u", &int_tmp))
+  //    return;
+  //  this->ui->color_blue_spin->setValue(int_tmp);
 
-//  fclose(file);
+  //  fclose(file);
 }
 
 void Viewer3D::saveSettings() {
-//  FILE* file;
-//  if (fopen_s(&file, "settings.my", "w")) return;
-//  fprintf_s(file, "%Lf %Lf %Lf %Lf %Lf %Lf %Lf %Lf %Lf %u %u %u",
-//            this->ui->move_x_spin->value(),
-//            this->ui->move_y_spin->value(),
-//            this->ui->move_z_spin->value(),
-//            this->ui->rotate_x_spin->value(),
-//            this->ui->rotate_y_spin->value(),
-//            this->ui->rotate_z_spin->value(),
-//            this->ui->scale_x_spin->value(),
-//            this->ui->scale_y_spin->value(),
-//            this->ui->scale_z_spin->value(),
-//            this->ui->color_red_spin->value(),
-//            this->ui->color_green_spin->value(),
-//            this->ui->color_blue_spin->value()
-//                );
-//  fclose(file);
+  //  FILE* file;
+  //  if (fopen_s(&file, "settings.my", "w")) return;
+  //  fprintf_s(file, "%Lf %Lf %Lf %Lf %Lf %Lf %Lf %Lf %Lf %u %u %u",
+  //            this->ui->move_x_spin->value(),
+  //            this->ui->move_y_spin->value(),
+  //            this->ui->move_z_spin->value(),
+  //            this->ui->rotate_x_spin->value(),
+  //            this->ui->rotate_y_spin->value(),
+  //            this->ui->rotate_z_spin->value(),
+  //            this->ui->scale_x_spin->value(),
+  //            this->ui->scale_y_spin->value(),
+  //            this->ui->scale_z_spin->value(),
+  //            this->ui->color_red_spin->value(),
+  //            this->ui->color_green_spin->value(),
+  //            this->ui->color_blue_spin->value()
+  //                );
+  //  fclose(file);
 }
 
 Viewer3D::~Viewer3D() {
@@ -134,8 +131,7 @@ Viewer3D::~Viewer3D() {
 
 void Viewer3D::changeBackgroundColor() {
   this->ui->openGLWidget->changeBackgroundColor(
-      this->ui->color_red_spin->value(),
-      this->ui->color_green_spin->value(),
+      this->ui->color_red_spin->value(), this->ui->color_green_spin->value(),
       this->ui->color_blue_spin->value());
 }
 
@@ -212,11 +208,9 @@ void Viewer3D::obj3_scale_z(double new_z) {
 }
 
 void Viewer3D::load_file() {
-  QString fileName =
-      QFileDialog::getOpenFileName(this, "Выбрать файл",
-                                   nullptr, "Object(*.obj)");
-  if (fileName.isNull())
-    return;
+  QString fileName = QFileDialog::getOpenFileName(this, "Выбрать файл", nullptr,
+                                                  "Object(*.obj)");
+  if (fileName.isNull()) return;
   this->ui->file_info->setText("File: " + fileName);
 
   if (this->current_obj3) free_object3(&this->current_obj3);
@@ -226,8 +220,8 @@ void Viewer3D::load_file() {
   if (this->current_obj3) {
     QString vertexes =
         "Вершин: " + QString::number(this->current_obj3->list_vertex3.count);
-    QString polygon =
-        " Полигонов: " + QString::number(this->current_obj3->list_polygon.count);
+    QString polygon = " Полигонов: " +
+                      QString::number(this->current_obj3->list_polygon.count);
     this->ui->vertical_info->setText(vertexes + polygon);
 
     object3_move(this->current_obj3, {this->ui->move_x_spin->value(),
@@ -266,16 +260,17 @@ void Viewer3D::setEnableTools(bool state) {
 void Viewer3D::updateShift(QPoint shift) {
   if (!this->current_obj3) return;
 
-
   this->ignore_event = true;
-  this->ui->move_x_spin->setValue(this->ui->move_x_spin->value() + (double)shift.x() / 250);
-  this->ui->move_y_spin->setValue(this->ui->move_y_spin->value() + -(double)shift.y() / 250);
+  this->ui->move_x_spin->setValue(this->ui->move_x_spin->value() +
+                                  (double)shift.x() / 250);
+  this->ui->move_y_spin->setValue(this->ui->move_y_spin->value() +
+                                  -(double)shift.y() / 250);
   this->ignore_event = false;
 
-  object3_move(this->current_obj3,
-               {this->ui->move_x_spin->value() - this->current_obj3->shift.x,
-                this->ui->move_y_spin->value() - this->current_obj3->shift.y,
-                0});
+  object3_move(
+      this->current_obj3,
+      {this->ui->move_x_spin->value() - this->current_obj3->shift.x,
+       this->ui->move_y_spin->value() - this->current_obj3->shift.y, 0});
   this->ui->openGLWidget->update();
 }
 
@@ -283,8 +278,7 @@ void Viewer3D::updateRotate(QPoint shift) {
   if (!this->current_obj3) return;
 
   vector3_t ang = {-(double)shift.y(), (double)shift.x(), 0};
-//  vector3_rotate(&ang, this->current_obj3->rotate);
-
+  //  vector3_rotate(&ang, this->current_obj3->rotate);
 
   this->ignore_event = true;
   this->ui->rotate_x_spin->setValue(this->ui->rotate_x_spin->value() + ang.x);
@@ -292,9 +286,11 @@ void Viewer3D::updateRotate(QPoint shift) {
   this->ui->rotate_z_spin->setValue(this->ui->rotate_z_spin->value() + ang.z);
   this->ignore_event = false;
 
-  object3_rotate(this->current_obj3, {this->ui->rotate_x_spin->value() - this->current_obj3->rotate.x,
-                                      this->ui->rotate_y_spin->value() - this->current_obj3->rotate.y,
-                                      this->ui->rotate_z_spin->value() - this->current_obj3->rotate.z});
+  object3_rotate(
+      this->current_obj3,
+      {this->ui->rotate_x_spin->value() - this->current_obj3->rotate.x,
+       this->ui->rotate_y_spin->value() - this->current_obj3->rotate.y,
+       this->ui->rotate_z_spin->value() - this->current_obj3->rotate.z});
   this->ui->openGLWidget->update();
 }
 
@@ -309,149 +305,135 @@ void Viewer3D::updateScale(int y) {
   this->ui->scale_z_spin->setValue(this->ui->scale_z_spin->value() + new_y);
   this->ignore_event = false;
 
-  object3_scale(this->current_obj3, {this->ui->scale_x_spin->value() / this->current_obj3->scale.x,
-                                     this->ui->scale_y_spin->value() / this->current_obj3->scale.y,
-                                     this->ui->scale_z_spin->value() / this->current_obj3->scale.z});
-this->ui->openGLWidget->update();
+  object3_scale(
+      this->current_obj3,
+      {this->ui->scale_x_spin->value() / this->current_obj3->scale.x,
+       this->ui->scale_y_spin->value() / this->current_obj3->scale.y,
+       this->ui->scale_z_spin->value() / this->current_obj3->scale.z});
+  this->ui->openGLWidget->update();
 }
 
-
 void Viewer3D::saveJpegImage() {
-  QString fileName = QFileDialog::getSaveFileName(this, "Save file",
-                                                  nullptr, "Image(*.jpeg)");
-  if (fileName.isNull())
-    return;
+  QString fileName =
+      QFileDialog::getSaveFileName(this, "Save file", nullptr, "Image(*.jpeg)");
+  if (fileName.isNull()) return;
   this->ui->openGLWidget->saveJpegImage(fileName);
 }
 
 void Viewer3D::saveBmpImage() {
   QString fileName = QFileDialog::getSaveFileName(this, "Сохранить файл",
                                                   nullptr, "Image(*.bmp)");
-  if (fileName.isNull())
-    return;
+  if (fileName.isNull()) return;
   this->ui->openGLWidget->saveBmpImage(fileName);
 }
 
 void Viewer3D::saveGifImage() {
-    gif = new QGifImage;
-    gif->setDefaultDelay(1000 / gifFps);
-    startTime = 0, tmpTime = 1000 / gifFps;
-    timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(oneGif()));
-    timer->start(1000 / gifFps);
+  gif = new QGifImage;
+  gif->setDefaultDelay(1000 / gifFps);
+  startTime = 0, tmpTime = 1000 / gifFps;
+  timer = new QTimer(this);
+  connect(timer, SIGNAL(timeout()), this, SLOT(oneGif()));
+  timer->start(1000 / gifFps);
 }
 
 void Viewer3D::oneGif() {
-    if (startTime == tmpTime) {
-        QPixmap screenGIF(this->ui->openGLWidget->size());  // *2
-        //        screenGIF.setDevicePixelRatio(2);  // improves quality. mult the
-        //        size by 2 line above ^
-        this->ui->openGLWidget->render(&screenGIF);
-        QImage image;
-        image = screenGIF.toImage();
-        gif->addFrame(image, 1000 / gifFps);
-        timePrint = (float)startTime / 1e3;  // GIF time in seconds
-        //        with 0.1 second precision (50 updates)
-//        ui->Counter->setNum((int)(timePrint + 1));
-        tmpTime += 1000 / gifFps;
-      }
-      if (startTime == 1000 * gifLength) {
-        time_t now = time(0);
-        tm *time = localtime(&now);
-        QDir d = QFileInfo("/Users/breajacq/Projects/C_Projects/C8_3DViewer_v1.0-0/src/viewer3d.cpp").absoluteDir();
-        d.setPath(QDir::cleanPath(d.filePath(QStringLiteral(".."))));
-        QString path = d.path();
-//        std::string str = path.toStdString();
-//        std::cout << "path = " << str << std::endl;
-        QString name = path + "/src/gifs/" + QString::number(time->tm_hour) + "-" +
-                       QString::number(time->tm_min) + "-" +
-                       QString::number(time->tm_sec) + ".gif";
-        gif->save(name);
-        free(gif);
+  if (startTime == tmpTime) {
+    QPixmap screenGIF(this->ui->openGLWidget->size());  // *2
+    //        screenGIF.setDevicePixelRatio(2);  // improves quality. mult the
+    //        size by 2 line above ^
+    this->ui->openGLWidget->render(&screenGIF);
+    QImage image;
+    image = screenGIF.toImage();
+    gif->addFrame(image, 1000 / gifFps);
+    timePrint = (float)startTime / 1e3;  // GIF time in seconds
+    //        with 0.1 second precision (50 updates)
+    //        ui->Counter->setNum((int)(timePrint + 1));
+    tmpTime += 1000 / gifFps;
+  }
+  if (startTime == 1000 * gifLength) {
+    time_t now = time(0);
+    tm *time = localtime(&now);
+    QDir d = QFileInfo(
+                 "/Users/breajacq/Projects/C_Projects/C8_3DViewer_v1.0-0/src/"
+                 "viewer3d.cpp")
+                 .absoluteDir();
+    d.setPath(QDir::cleanPath(d.filePath(QStringLiteral(".."))));
+    QString path = d.path();
+    //        std::string str = path.toStdString();
+    //        std::cout << "path = " << str << std::endl;
+    QString name = path + "/src/gifs/" + QString::number(time->tm_hour) + "-" +
+                   QString::number(time->tm_min) + "-" +
+                   QString::number(time->tm_sec) + ".gif";
+    gif->save(name);
+    free(gif);
 
-        timer->stop();
-//        this->ui->gif_label->setText("");
-      }
-      startTime += 1000 / gifFps;
-//      std::cout << "oneGIF" << std::endl;
-
-
-
+    timer->stop();
+    //        this->ui->gif_label->setText("");
+  }
+  startTime += 1000 / gifFps;
 }
-
 
 void Viewer3D::on_edges_solid_pressed() {
-    this->ui->openGLWidget->lineType = 0;
-    this->ui->openGLWidget->update();
+  this->ui->openGLWidget->lineType = 0;
+  this->ui->openGLWidget->update();
 }
 
-
 void Viewer3D::on_edges_dashed_pressed() {
-    this->ui->openGLWidget->lineType = 1;
-    this->ui->openGLWidget->update();
+  this->ui->openGLWidget->lineType = 1;
+  this->ui->openGLWidget->update();
 }
 
 void Viewer3D::on_edges_cir_slider_valueChanged(int red) {
-    srand((unsigned) time(NULL));
-    int green = 1 + (rand() % static_cast<int>(255 - 1 + 1));
-    int blue = 1 + (rand() % static_cast<int>(255 - 1 + 1));
+  srand((unsigned)time(NULL));
+  int green = 1 + (rand() % static_cast<int>(255 - 1 + 1));
+  int blue = 1 + (rand() % static_cast<int>(255 - 1 + 1));
 
-    this->ui->openGLWidget->lineColorStatus = 1;
-    this->ui->openGLWidget->changeColorLine(red, green, blue);
-    this->ui->openGLWidget->update();
+  this->ui->openGLWidget->lineColorStatus = 1;
+  this->ui->openGLWidget->changeColorLine(red, green, blue);
+  this->ui->openGLWidget->update();
 }
-
 
 void Viewer3D::on_edges_size_slider_valueChanged(int value) {
-   this->ui->openGLWidget->lineWidth = value / 10.0;
-   this->ui->openGLWidget->update();
+  this->ui->openGLWidget->lineWidth = value / 10.0;
+  this->ui->openGLWidget->update();
 }
-
 
 void Viewer3D::on_ver_cir_slider_valueChanged(int red) {
-    srand((unsigned) time(NULL));
-    int green = 1 + (rand() % static_cast<int>(255 - 1 + 1));
-    int blue = 1 + (rand() % static_cast<int>(255 - 1 + 1));
+  srand((unsigned)time(NULL));
+  int green = 1 + (rand() % static_cast<int>(255 - 1 + 1));
+  int blue = 1 + (rand() % static_cast<int>(255 - 1 + 1));
 
-    this->ui->openGLWidget->verColorStatus = 1;
-    this->ui->openGLWidget->changeVerLine(red, green, blue);
-    this->ui->openGLWidget->update();
+  this->ui->openGLWidget->verColorStatus = 1;
+  this->ui->openGLWidget->changeVerLine(red, green, blue);
+  this->ui->openGLWidget->update();
 }
-
 
 void Viewer3D::on_ver_size_slider_valueChanged(int value) {
-    this->ui->openGLWidget->pointWidth = value / 10.0;
-    this->ui->openGLWidget->update();
+  this->ui->openGLWidget->pointWidth = value / 10.0;
+  this->ui->openGLWidget->update();
 }
-
 
 void Viewer3D::on_vertices_circle_pressed() {
-    this->ui->openGLWidget->pointType = 2;
-    this->ui->openGLWidget->update();
+  this->ui->openGLWidget->pointType = 2;
+  this->ui->openGLWidget->update();
 }
-
 
 void Viewer3D::on_vertices_square_pressed() {
-    this->ui->openGLWidget->pointType = 1;
-    this->ui->openGLWidget->update();
+  this->ui->openGLWidget->pointType = 1;
+  this->ui->openGLWidget->update();
 }
-
 
 void Viewer3D::on_vertices_no_pressed() {
-    this->ui->openGLWidget->pointType = 0;
-    this->ui->openGLWidget->update();
+  this->ui->openGLWidget->pointType = 0;
+  this->ui->openGLWidget->update();
 }
-
 
 void Viewer3D::on_perspective_pressed() {
-    this->ui->openGLWidget->perspective = 1;
-    this->ui->openGLWidget->update();
+  this->ui->openGLWidget->perspective = 1;
+  this->ui->openGLWidget->update();
 }
-
 
 void Viewer3D::on_orthographic_pressed() {
-    this->ui->openGLWidget->perspective = 0;
-    this->ui->openGLWidget->update();
+  this->ui->openGLWidget->perspective = 0;
+  this->ui->openGLWidget->update();
 }
-
-
