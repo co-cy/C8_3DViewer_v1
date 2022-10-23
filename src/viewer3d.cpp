@@ -312,7 +312,6 @@ void Viewer3D::updateRotate(QPoint shift) {
 
 void Viewer3D::updateScale(int y) {
   if (!this->current_obj3) return;
-
   double new_y = y / fabs(y) / 20;
 
   this->ignore_event = true;
@@ -345,12 +344,19 @@ void Viewer3D::saveBmpImage() {
 }
 
 void Viewer3D::saveGifImage() {
-    gif = new QGifImage;
-    gif->setDefaultDelay(1000 / gifFps);
-    startTime = 0, tmpTime = 1000 / gifFps;
-    timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(oneGif()));
-    timer->start(1000 / gifFps);
+  sfileName = QFileDialog::getSaveFileName(this, "Сохранить файл",
+                                                  nullptr, "Image(*.gif)");
+  if (sfileName.isNull())
+    return;
+
+  gif = new QGifImage;
+  gif->setDefaultDelay(1000 / gifFps);
+  startTime = 0, tmpTime = 1000 / gifFps;
+  timer = new QTimer(this);
+  connect(timer, SIGNAL(timeout()), this, SLOT(oneGif()));
+  timer->start(1000 / gifFps);
+
+  this->ui->gif_button->setEnabled(false);
 }
 
 void Viewer3D::oneGif() {
@@ -359,8 +365,7 @@ void Viewer3D::oneGif() {
         //        screenGIF.setDevicePixelRatio(2);  // improves quality. mult the
         //        size by 2 line above ^
         this->ui->openGLWidget->render(&screenGIF);
-        QImage image;
-        image = screenGIF.toImage();
+        QImage image = screenGIF.toImage();
         gif->addFrame(image, 1000 / gifFps);
         timePrint = (float)startTime / 1e3;  // GIF time in seconds
         //        with 0.1 second precision (50 updates)
@@ -368,21 +373,15 @@ void Viewer3D::oneGif() {
         tmpTime += 1000 / gifFps;
       }
       if (startTime == 1000 * gifLength) {
-        time_t now = time(0);
-        tm *time = localtime(&now);
-        QDir d = QFileInfo("/Users/breajacq/Projects/C_Projects/C8_3DViewer_v1.0-0/src/viewer3d.cpp").absoluteDir();
-        d.setPath(QDir::cleanPath(d.filePath(QStringLiteral(".."))));
-        QString path = d.path();
-//        std::string str = path.toStdString();
-//        std::cout << "path = " << str << std::endl;
-        QString name = path + "/src/gifs/" + QString::number(time->tm_hour) + "-" +
-                       QString::number(time->tm_min) + "-" +
-                       QString::number(time->tm_sec) + ".gif";
-        gif->save(name);
-        free(gif);
-
+        gif->save( sfileName);
         timer->stop();
-//        this->ui->gif_label->setText("");
+
+        disconnect(timer, SIGNAL(timeout()), this, SLOT(oneGif()));
+
+        delete gif;
+        delete timer;
+
+        this->ui->gif_button->setEnabled(true);
       }
       startTime += 1000 / gifFps;
 }
