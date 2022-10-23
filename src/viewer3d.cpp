@@ -398,7 +398,6 @@ void Viewer3D::changeSizeEdges(int shift) {
 }
 
 void Viewer3D::changeColorEdges() {
-    this->ui->openGLWidget->lineColorStatus = 1;
     this->ui->openGLWidget->changeColorLine(
                 this->ui->edges_red_spin->value(),
                 this->ui->edges_green_spin->value(),
@@ -417,7 +416,6 @@ void Viewer3D::changeSizeVertexes(int shift) {
 }
 
 void Viewer3D::changeColorVertexes() {
-    this->ui->openGLWidget->verColorStatus = 1;
     this->ui->openGLWidget->changeVerLine(
                 this->ui->vertex_red_spin->value(),
                 this->ui->vertex_green_spin->value(),

@@ -69,7 +69,7 @@ void MyQOpenGLWidget::initializeGL() {
 }
 void MyQOpenGLWidget::paintGL() {
   glClearColor(color.redF(), color.greenF(), color.blueF(), 1.0f);
-  glClear(GL_COLOR_BUFFER_BIT);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_TEST);
 
   if ((*this->cur_obect)) {
       glMatrixMode(GL_PROJECTION);
@@ -82,34 +82,27 @@ void MyQOpenGLWidget::paintGL() {
 
       glVertexPointer(3, GL_DOUBLE, 0, (*this->cur_obect)->list_vertex3.vertex3); // array_of_coord
       glEnableClientState(GL_VERTEX_ARRAY); // Enable state Opengl
-          if (verColorStatus) {
-              glColor3f(colorVer.redF(), colorVer.greenF(), colorVer.blueF());
-          } else {
-              glColor3f(1, 0, 0); // color point
-          }
 
-          if (pointType == 2) glEnable(GL_POINT_SMOOTH);
-              glPointSize(pointWidth);
-          if (pointType) glDrawArrays(GL_POINTS, 0, ((*this->cur_obect)->list_vertex3.count));
-          if (pointType == 2) glDisable(GL_POINT_SMOOTH);
+      if (pointType) {
+        glColor3f(colorVer.redF(), colorVer.greenF(), colorVer.blueF());
+        if (pointType == 2) glEnable(GL_POINT_SMOOTH);
+        glPointSize(pointWidth);
+        glDrawArrays(GL_POINTS, 0, ((*this->cur_obect)->list_vertex3.count));
+        if (pointType == 2) glDisable(GL_POINT_SMOOTH);
+      }
 
-          if (lineColorStatus) {
-            glColor3f(colorLine.redF(), colorLine.greenF(), colorLine.blueF());
-          } else {
-            glColor3f(0.12, 0.69, 0.55); // color lines
-          }
+      if (lineType) {
+        glColor3f(colorLine.redF(), colorLine.greenF(), colorLine.blueF());
+        if (lineType == 2) {
+            glEnable(GL_LINE_STIPPLE);
+            glLineStipple(2, 0x3333);
+        }
+        glLineWidth(lineWidth);
 
-          if (lineType) {
-              if (lineType == 2) {
-                  glEnable(GL_LINE_STIPPLE);
-                  glLineStipple(2, 0x3333);
-              }
-              glLineWidth(lineWidth);
+        glDrawElements(GL_LINES, (*this->cur_obect)->list_polygon.size, GL_UNSIGNED_INT, (*this->cur_obect)->list_polygon.polygons);
 
-              glDrawElements(GL_LINES, (*this->cur_obect)->list_polygon.size, GL_UNSIGNED_INT, (*this->cur_obect)->list_polygon.polygons);
-
-              if (lineType == 2) glDisable(GL_LINE_STIPPLE);
-          }
+        if (lineType == 2) glDisable(GL_LINE_STIPPLE);
+      }
 
       glDisableClientState(GL_VERTEX_ARRAY); // Disable state Opengl
   }

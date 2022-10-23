@@ -29,12 +29,10 @@ class MyQOpenGLWidget : public QOpenGLWidget, public QOpenGLFunctions {
 
   // Edges interface
   int lineType = 0; // for stripple
-  int lineColorStatus = 0;
   float lineWidth = 1; // 1 default and min, 25.5 max value;
   QColor colorLine = QColor();
 
   // Vertices interface
-  int verColorStatus = 0;
   QColor colorVer = QColor();
   float pointWidth = 5; // 1 default, min 5, 25.5 max value;
   int pointType = 1; // 0 - disable, 1 - square, 2 - circle
