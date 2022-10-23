@@ -9,6 +9,7 @@
 void parse_size_object3_from_obj_file(FILE* file, object3_t* object3);
 void parse_vertex3_from_obj_file(FILE* file, list_vertex3_t* list_vertex3);
 void parse_polygon_from_obj_file(FILE* file, list_polygon_t* list_polygon);
+void normalize_vertex3(list_vertex3_t* list_vertex3, double max_size);
 
 object3_t* parse_object3_from_obj_file(const char* filename) {
   FILE* file = fopen(filename, "r");
@@ -55,17 +56,31 @@ void parse_size_object3_from_obj_file(FILE* file, object3_t* object3) {
   if (!object3->list_vertex3.vertex3) exit(LOW_MEMORY);
 }
 
+
+
 void parse_vertex3_from_obj_file(FILE* file, list_vertex3_t* list_vertex3) {
   char buff[BUF_SIZE];
 
+  double max_vertex = 0;
   for (unsigned int i = 0; i < list_vertex3->size;) {
     fgets(buff, BUF_SIZE, file);
 
     if (buff[0] == 'v' && buff[1] == ' ') {
       sscanf(buff + 2, "%lf%lf%lf", list_vertex3->vertex3 + i,
              list_vertex3->vertex3 + i + 1, list_vertex3->vertex3 + i + 2);
+      for (int z = 0; z < VERTEX_SIZE; z++)
+        if (fabs(*(list_vertex3->vertex3 + i + z)) > max_vertex)
+          max_vertex = fabs(*(list_vertex3->vertex3 + i + z));
       i += VERTEX_SIZE;
     }
+  }
+
+  normalize_vertex3(list_vertex3, max_vertex);
+}
+
+void normalize_vertex3(list_vertex3_t* list_vertex3, double max_size) {
+  for (unsigned int i = 0; i < list_vertex3->size; i++) {
+    list_vertex3->vertex3[i] /= max_size;
   }
 }
 
