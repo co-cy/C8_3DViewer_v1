@@ -75,9 +75,15 @@ void MyQOpenGLWidget::paintGL() {
       glMatrixMode(GL_PROJECTION);
       glLoadIdentity();
 
+//      if (perspective) {
+//          glFrustum(-1, 1, -1, 1, 0.8, 3); // задает для перспективной проекции
+//          glTranslatef(0, 0, -1.4);
+//      }
       if (perspective) {
-          glFrustum(-1, 1, -1, 1, 0.8, 3); // задает для перспективной проекции
+          glFrustum(-1, 1, -1, 1, 0.8f, 3); // задает для перспективной проекции
           glTranslatef(0, 0, -1.4);
+      } else {
+        glOrtho(-1, 1, -1, 1, -100.0f, 100.0f);
       }
 
       glVertexPointer(3, GL_DOUBLE, 0, (*this->cur_obect)->list_vertex3.vertex3); // array_of_coord
