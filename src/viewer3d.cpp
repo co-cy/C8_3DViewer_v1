@@ -313,7 +313,7 @@ void Viewer3D::updateRotate(QPoint shift) {
 void Viewer3D::updateScale(int y) {
   if (!this->current_obj3) return;
 
-  double new_y = y / fabs(y) / 10;
+  double new_y = y / fabs(y) / 20;
 
   this->ignore_event = true;
   this->ui->scale_x_spin->setValue(this->ui->scale_x_spin->value() + new_y);
