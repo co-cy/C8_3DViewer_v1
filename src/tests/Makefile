@@ -56,6 +56,8 @@ $(BUILD_DIR)/%.c.o: %.c
 .PHONY: clean
 clean:
 	-rm -r $(BUILD_DIR)
+	-rm -r parser
+	-rm -r struct
 
 
 # Include the .d makefiles. The - at the front suppresses the errors of missing
