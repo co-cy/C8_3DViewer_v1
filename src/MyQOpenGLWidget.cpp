@@ -67,6 +67,7 @@ void MyQOpenGLWidget::initializeGL() {
   glLoadIdentity();
   glMatrixMode(GL_PROJECTION);
 }
+
 void MyQOpenGLWidget::paintGL() {
   glClearColor(color.redF(), color.greenF(), color.blueF(), 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_TEST);
