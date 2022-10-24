@@ -53,7 +53,10 @@ void parse_size_object3_from_obj_file(FILE* file, object3_t* object3) {
 
   object3->list_polygon.polygons =
       calloc(object3->list_polygon.size, sizeof(int));
-  if (!object3->list_vertex3.vertex3) exit(LOW_MEMORY);
+  if (!object3->list_vertex3.vertex3) {
+    free(object3->list_vertex3.vertex3);
+    exit(LOW_MEMORY);
+  }
 }
 
 

@@ -2,7 +2,7 @@
 // Created by stf20 on 09.10.2022.
 //
 
-#include "struct/object3/object3.h"
+#include "../object3.h"
 
 void object3_scale(object3_t *obj3, vector3_t scale) {
   if (fabs(scale.x) > 1e-6) obj3->scale.x *= scale.x;

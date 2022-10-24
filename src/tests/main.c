@@ -1,24 +1,41 @@
 //
 // Created by nanadaug on 20.10.2022.
 //
+#include "main.h"
+
+int failed_tests = 0;
 
 int main() {
-  // load cube ( 2 теста )
-  // check_result
+  Suite *list_cases[] = {
+      create_parser_testcase(), create_move_testcase(),
+      create_rotate_testcase(), create_scale_testcase(),
+      NULL};
 
-                        // load_cube
-  // move cube  ( 2-3 )
-  // check_result
+  for (Suite **testcase = list_cases; *testcase != NULL; testcase++) {
+    run_testcase(*testcase);
+  }
 
-  // rotate cube ( 2-3 )
-  // check_result
+  if (failed_tests) {
+    fprintf(stderr, "FAIL TEST: %d\n", failed_tests);
+  }
 
-  // scale cube ( 2-3 )
-  // check_result
+  return 0;
+}
 
-  // add vector ( 2-3 )
-  // check_result
+void run_testcase(Suite *testcase) {
+  static int counter_testcase = 1;
 
-  // rotate vector ( 2-3 )
-  // check_result
+  if (counter_testcase > 1) putchar('\n');
+
+  printf("CURRENT TEST: %d\n", counter_testcase);
+  counter_testcase++;
+
+  SRunner *sr = srunner_create(testcase);
+
+  srunner_set_fork_status(sr, CK_NOFORK);
+  srunner_run_all(sr, CK_NORMAL);
+
+  failed_tests += srunner_ntests_failed(sr);
+
+  srunner_free(sr);
 }
