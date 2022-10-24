@@ -22,6 +22,8 @@ class Viewer3D : public QMainWindow {
   explicit Viewer3D(QWidget *parent = nullptr);
   ~Viewer3D() override;
 
+  QString sfileName;
+
  private:
   Ui::Viewer3D *ui;
   int startTime, tmpTime;
