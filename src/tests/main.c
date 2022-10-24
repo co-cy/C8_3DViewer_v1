@@ -6,10 +6,9 @@
 int failed_tests = 0;
 
 int main() {
-  Suite *list_cases[] = {
-      create_parser_testcase(), create_move_testcase(),
-      create_rotate_testcase(), create_scale_testcase(),
-      NULL};
+  Suite *list_cases[] = {create_parser_testcase(), create_move_testcase(),
+                         create_rotate_testcase(), create_scale_testcase(),
+                         NULL};
 
   for (Suite **testcase = list_cases; *testcase != NULL; testcase++) {
     run_testcase(*testcase);

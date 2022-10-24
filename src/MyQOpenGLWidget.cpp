@@ -6,9 +6,7 @@
 #include "MyQOpenGLWidget.h"
 
 MyQOpenGLWidget::MyQOpenGLWidget(QWidget* parent) : QOpenGLWidget(parent) {}
-MyQOpenGLWidget::~MyQOpenGLWidget() {
-  delete prog;
-};
+MyQOpenGLWidget::~MyQOpenGLWidget() { delete prog; };
 
 void MyQOpenGLWidget::mousePressEvent(QMouseEvent* event) {
   Qt::MouseButton button = event->button();
@@ -62,7 +60,8 @@ void MyQOpenGLWidget::changeVerLine(int r, int g, int b) {
 
 void MyQOpenGLWidget::initializeGL() {
   initializeOpenGLFunctions();
-  glEnable(GL_DEPTH_TEST); // включаем буфер глубины для отображения Z-координаты.
+  glEnable(
+      GL_DEPTH_TEST);  // включаем буфер глубины для отображения Z-координаты.
 
   glLoadIdentity();
   glMatrixMode(GL_PROJECTION);
@@ -73,45 +72,49 @@ void MyQOpenGLWidget::paintGL() {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_TEST);
 
   if ((*this->cur_obect)) {
-      glMatrixMode(GL_PROJECTION);
-      glLoadIdentity();
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
 
-//      if (perspective) {
-//          glFrustum(-1, 1, -1, 1, 0.8, 3); // задает для перспективной проекции
-//          glTranslatef(0, 0, -1.4);
-//      }
-      if (perspective) {
-          glFrustum(-1, 1, -1, 1, 0.8f, 3); // задает для перспективной проекции
-          glTranslatef(0, 0, -1.4);
-      } else {
-        glOrtho(-10, 10, -10, 10, -100.0f, 100.0f);
+    //      if (perspective) {
+    //          glFrustum(-1, 1, -1, 1, 0.8, 3); // задает для перспективной
+    //          проекции glTranslatef(0, 0, -1.4);
+    //      }
+    if (perspective) {
+      glFrustum(-1, 1, -1, 1, 0.8f, 3);  // задает для перспективной проекции
+      glTranslatef(0, 0, -1.4);
+    } else {
+      glOrtho(-10, 10, -10, 10, -100.0f, 100.0f);
+    }
+
+    glVertexPointer(
+        3, GL_DOUBLE, 0,
+        (*this->cur_obect)->list_vertex3.vertex3);  // array_of_coord
+    glEnableClientState(GL_VERTEX_ARRAY);           // Enable state Opengl
+
+    if (pointType) {
+      glColor3f(colorVer.redF(), colorVer.greenF(), colorVer.blueF());
+      if (pointType == 2) glEnable(GL_POINT_SMOOTH);
+      glPointSize(pointWidth);
+      glDrawArrays(GL_POINTS, 0, ((*this->cur_obect)->list_vertex3.count));
+      if (pointType == 2) glDisable(GL_POINT_SMOOTH);
+    }
+
+    if (lineType) {
+      glColor3f(colorLine.redF(), colorLine.greenF(), colorLine.blueF());
+      if (lineType == 2) {
+        glEnable(GL_LINE_STIPPLE);
+        glLineStipple(2, 0x3333);
       }
+      glLineWidth(lineWidth);
 
-      glVertexPointer(3, GL_DOUBLE, 0, (*this->cur_obect)->list_vertex3.vertex3); // array_of_coord
-      glEnableClientState(GL_VERTEX_ARRAY); // Enable state Opengl
+      glDrawElements(GL_LINES, (*this->cur_obect)->list_polygon.size,
+                     GL_UNSIGNED_INT,
+                     (*this->cur_obect)->list_polygon.polygons);
 
-      if (pointType) {
-        glColor3f(colorVer.redF(), colorVer.greenF(), colorVer.blueF());
-        if (pointType == 2) glEnable(GL_POINT_SMOOTH);
-        glPointSize(pointWidth);
-        glDrawArrays(GL_POINTS, 0, ((*this->cur_obect)->list_vertex3.count));
-        if (pointType == 2) glDisable(GL_POINT_SMOOTH);
-      }
+      if (lineType == 2) glDisable(GL_LINE_STIPPLE);
+    }
 
-      if (lineType) {
-        glColor3f(colorLine.redF(), colorLine.greenF(), colorLine.blueF());
-        if (lineType == 2) {
-            glEnable(GL_LINE_STIPPLE);
-            glLineStipple(2, 0x3333);
-        }
-        glLineWidth(lineWidth);
-
-        glDrawElements(GL_LINES, (*this->cur_obect)->list_polygon.size, GL_UNSIGNED_INT, (*this->cur_obect)->list_polygon.polygons);
-
-        if (lineType == 2) glDisable(GL_LINE_STIPPLE);
-      }
-
-      glDisableClientState(GL_VERTEX_ARRAY); // Disable state Opengl
+    glDisableClientState(GL_VERTEX_ARRAY);  // Disable state Opengl
   }
 }
 
@@ -122,4 +125,3 @@ void MyQOpenGLWidget::saveBmpImage(const QString& filename) {
 void MyQOpenGLWidget::saveJpegImage(const QString& filename) {
   this->grabFramebuffer().save(filename, "jpeg");
 }
-

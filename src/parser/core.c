@@ -47,12 +47,14 @@ object3_t* parse_object3_from_obj_file(const char* filename) {
     exit(LOW_MEMORY);
   }
 
-  for (unsigned long i = 0; i < new_object->list_origin_vertex3.size ; i++) {
-    new_object->list_vertex3.vertex3[i] = new_object->list_origin_vertex3.vertex3[i];
+  for (unsigned long i = 0; i < new_object->list_origin_vertex3.size; i++) {
+    new_object->list_vertex3.vertex3[i] =
+        new_object->list_origin_vertex3.vertex3[i];
   }
 
-  for (unsigned long i = 0; i < new_object->list_origin_polygon.size ; i++) {
-    new_object->list_polygon.polygons[i] = new_object->list_origin_polygon.polygons[i];
+  for (unsigned long i = 0; i < new_object->list_origin_polygon.size; i++) {
+    new_object->list_polygon.polygons[i] =
+        new_object->list_origin_polygon.polygons[i];
   }
 
   return new_object;
@@ -89,8 +91,6 @@ void parse_size_object3_from_obj_file(FILE* file, object3_t* object3) {
     exit(LOW_MEMORY);
   }
 }
-
-
 
 void parse_vertex3_from_obj_file(FILE* file, list_vertex3_t* list_vertex3) {
   char buff[BUF_SIZE];

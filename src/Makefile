@@ -43,7 +43,7 @@ gcov_report:
 	cd tests && make gcov_report && cd ..
 
 lint:
-	clang-format -i $(shell find . -name "*.c" -or -name "*.cpp")
+	clang-format -n $(shell find . -name "*.c" -or -name "*.cpp")
 
 check:
 	cppcheck --enable=all --suppress=missingIncludeSystem $(shell find . -name "*.c" -or -name "*.cpp")
