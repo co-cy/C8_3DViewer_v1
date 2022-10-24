@@ -50,7 +50,7 @@ set(PROJECT_SOURCES
         QtGifImage-master/src/gifimage/qgifimage.h
         QtGifImage-master/src/gifimage/qgifimage_p.h
         QtGifImage-master/src/gifimage/qgifimage.cpp
-        )
+        struct/object3/update.c)
 
 set(CPACK_SOURCE_GENERATOR "TGZ")
 add_custom_target(dist COMMAND ${CMAKE_MAKE_PROGRAM} package_source)

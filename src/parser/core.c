@@ -20,41 +20,69 @@ object3_t* parse_object3_from_obj_file(const char* filename) {
   parse_size_object3_from_obj_file(file, new_object);
   fseek(file, 0, SEEK_SET);
 
-  parse_vertex3_from_obj_file(file, &new_object->list_vertex3);
+  parse_vertex3_from_obj_file(file, &new_object->list_origin_vertex3);
   fseek(file, 0, SEEK_SET);
 
-  parse_polygon_from_obj_file(file, &new_object->list_polygon);
+  parse_polygon_from_obj_file(file, &new_object->list_origin_polygon);
 
   fclose(file);
+
+  new_object->list_vertex3.size = new_object->list_origin_vertex3.size;
+  new_object->list_polygon.size = new_object->list_origin_polygon.size;
+
+  new_object->list_vertex3.count = new_object->list_origin_vertex3.count;
+  new_object->list_polygon.count = new_object->list_origin_polygon.count;
+
+  new_object->list_vertex3.vertex3 =
+      calloc(new_object->list_vertex3.size, sizeof(double));
+  if (!new_object->list_vertex3.vertex3) {
+    free_object3(&new_object);
+    exit(LOW_MEMORY);
+  }
+
+  new_object->list_polygon.polygons =
+      calloc(new_object->list_polygon.size, sizeof(int));
+  if (!new_object->list_polygon.polygons) {
+    free_object3(&new_object);
+    exit(LOW_MEMORY);
+  }
+
+  for (int i = 0; i < new_object->list_origin_vertex3.size ; i++) {
+    new_object->list_vertex3.vertex3[i] = new_object->list_origin_vertex3.vertex3[i];
+  }
+
+  for (int i = 0; i < new_object->list_origin_polygon.size ; i++) {
+    new_object->list_polygon.polygons[i] = new_object->list_origin_polygon.polygons[i];
+  }
 
   return new_object;
 }
 
 void parse_size_object3_from_obj_file(FILE* file, object3_t* object3) {
-  object3->list_vertex3.size = 0;
-  object3->list_polygon.size = 0;
+  object3->list_origin_vertex3.size = 0;
+  object3->list_origin_polygon.size = 0;
 
   char buff[BUF_SIZE];
   while (fgets(buff, BUF_SIZE, file))
     if (buff[0] == 'v' && buff[1] == ' ') {
-      object3->list_vertex3.count++;
-      object3->list_vertex3.size += VERTEX_SIZE;
+      object3->list_origin_vertex3.count++;
+      object3->list_origin_vertex3.size += VERTEX_SIZE;
     } else if (buff[0] == 'f' && buff[1] == ' ') {
-      object3->list_polygon.count++;
+      object3->list_origin_polygon.count++;
       for (char* tmp = buff; *tmp; tmp++)
         if (*tmp == ' ' && isdigit(*(tmp + 1))) {
-          object3->list_polygon.size += POLYGON_SIZE;
+          object3->list_origin_polygon.size += POLYGON_SIZE;
         }
     }
 
-  object3->list_vertex3.vertex3 =
-      calloc(object3->list_vertex3.size, sizeof(double));
-  if (!object3->list_vertex3.vertex3) exit(LOW_MEMORY);
+  object3->list_origin_vertex3.vertex3 =
+      calloc(object3->list_origin_vertex3.size, sizeof(double));
+  if (!object3->list_origin_vertex3.vertex3) exit(LOW_MEMORY);
 
-  object3->list_polygon.polygons =
-      calloc(object3->list_polygon.size, sizeof(int));
-  if (!object3->list_vertex3.vertex3) {
-    free(object3->list_vertex3.vertex3);
+  object3->list_origin_polygon.polygons =
+      calloc(object3->list_origin_polygon.size, sizeof(int));
+  if (!object3->list_origin_polygon.polygons) {
+    free_object3(&object3);
     exit(LOW_MEMORY);
   }
 }
