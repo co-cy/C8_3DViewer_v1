@@ -97,60 +97,129 @@ void Viewer3D::loadSettings() {
   double tmp_d;
   int tmp_i;
 
-  if (!fscanf(file, "%lf", &tmp_d)) return;
+  if (!fscanf(file, "%lf", &tmp_d)) {
+    fclose(file);
+    return;
+  }
   this->ui->move_x_spin->setValue(tmp_d);
-  if (!fscanf(file, "%lf", &tmp_d)) return;
+  if (!fscanf(file, "%lf", &tmp_d)) {
+    fclose(file);
+    return;
+  }
   this->ui->move_y_spin->setValue(tmp_d);
-  if (!fscanf(file, "%lf", &tmp_d)) return;
+  if (!fscanf(file, "%lf", &tmp_d)) {
+    fclose(file);
+    return;
+  }
   this->ui->move_z_spin->setValue(tmp_d);
 
-  if (!fscanf(file, "%lf", &tmp_d)) return;
+  if (!fscanf(file, "%lf", &tmp_d)) {
+    fclose(file);
+    return;
+  }
   this->ui->rotate_x_spin->setValue(tmp_d);
-  if (!fscanf(file, "%lf", &tmp_d)) return;
+  if (!fscanf(file, "%lf", &tmp_d)) {
+    fclose(file);
+    return;
+  }
   this->ui->rotate_y_spin->setValue(tmp_d);
-  if (!fscanf(file, "%lf", &tmp_d)) return;
+  if (!fscanf(file, "%lf", &tmp_d)) {
+    fclose(file);
+    return;
+  }
   this->ui->rotate_z_spin->setValue(tmp_d);
 
-  if (!fscanf(file, "%lf", &tmp_d)) return;
+  if (!fscanf(file, "%lf", &tmp_d)) {
+    fclose(file);
+    return;
+  }
   this->ui->scale_x_spin->setValue(tmp_d);
-  if (!fscanf(file, "%lf", &tmp_d)) return;
+  if (!fscanf(file, "%lf", &tmp_d)) {
+    fclose(file);
+    return;
+  }
   this->ui->scale_y_spin->setValue(tmp_d);
-  if (!fscanf(file, "%lf", &tmp_d)) return;
+  if (!fscanf(file, "%lf", &tmp_d)) {
+    fclose(file);
+    return;
+  }
   this->ui->scale_z_spin->setValue(tmp_d);
 
-  if (!fscanf(file, "%d", &tmp_i)) return;
+  if (!fscanf(file, "%d", &tmp_i)) {
+    fclose(file);
+    return;
+  }
   this->ui->color_red_spin->setValue(tmp_i);
-  if (!fscanf(file, "%d", &tmp_i)) return;
+  if (!fscanf(file, "%d", &tmp_i)) {
+    fclose(file);
+    return;
+  }
   this->ui->color_green_spin->setValue(tmp_i);
-  if (!fscanf(file, "%d", &tmp_i)) return;
+  if (!fscanf(file, "%d", &tmp_i)) {
+    fclose(file);
+    return;
+  }
   this->ui->color_blue_spin->setValue(tmp_i);
 
-  if (!fscanf(file, "%d", &tmp_i)) return;
+  if (!fscanf(file, "%d", &tmp_i)) {
+    fclose(file);
+    return;
+  }
   if (tmp_i)
     this->ui->perspective->setChecked(true);
   else
     this->ui->orthographic->setChecked(true);
 
-  if (!fscanf(file, "%d", &tmp_i)) return;
+  if (!fscanf(file, "%d", &tmp_i)) {
+    fclose(file);
+    return;
+  }
   this->ui->edges_type_combo->setCurrentIndex(tmp_i);
-  if (!fscanf(file, "%d", &tmp_i)) return;
+  if (!fscanf(file, "%d", &tmp_i)) {
+    fclose(file);
+    return;
+  }
   this->ui->edges_size_spin->setValue(tmp_i);
-  if (!fscanf(file, "%d", &tmp_i)) return;
+  if (!fscanf(file, "%d", &tmp_i)) {
+    fclose(file);
+    return;
+  }
   this->ui->edges_red_spin->setValue(tmp_i);
-  if (!fscanf(file, "%d", &tmp_i)) return;
+  if (!fscanf(file, "%d", &tmp_i)) {
+    fclose(file);
+    return;
+  }
   this->ui->edges_green_spin->setValue(tmp_i);
-  if (!fscanf(file, "%d", &tmp_i)) return;
+  if (!fscanf(file, "%d", &tmp_i)) {
+    fclose(file);
+    return;
+  }
   this->ui->edges_blue_spin->setValue(tmp_i);
 
-  if (!fscanf(file, "%d", &tmp_i)) return;
+  if (!fscanf(file, "%d", &tmp_i)) {
+    fclose(file);
+    return;
+  }
   this->ui->vertex_type_combo->setCurrentIndex(tmp_i);
-  if (!fscanf(file, "%d", &tmp_i)) return;
+  if (!fscanf(file, "%d", &tmp_i)) {
+    fclose(file);
+    return;
+  }
   this->ui->vertex_size_spin->setValue(tmp_i);
-  if (!fscanf(file, "%d", &tmp_i)) return;
+  if (!fscanf(file, "%d", &tmp_i)) {
+    fclose(file);
+    return;
+  }
   this->ui->vertex_red_spin->setValue(tmp_i);
-  if (!fscanf(file, "%d", &tmp_i)) return;
+  if (!fscanf(file, "%d", &tmp_i)) {
+    fclose(file);
+    return;
+  }
   this->ui->vertex_green_spin->setValue(tmp_i);
-  if (!fscanf(file, "%d", &tmp_i)) return;
+  if (!fscanf(file, "%d", &tmp_i)) {
+    fclose(file);
+    return;
+  }
   this->ui->vertex_blue_spin->setValue(tmp_i);
 
   fclose(file);

@@ -46,4 +46,4 @@ lint:
 	clang-format -n $(shell find . -name "*.c" -or -name "*.cpp")
 
 check:
-	cppcheck --enable=all --suppress=missingIncludeSystem $(shell find . -name "*.c" -or -name "*.cpp")
+	cppcheck --enable=all --suppress=missingIncludeSystem $(shell find . -name "*.c" -or -name "*.cpp" | grep "./QtGifImage-master/*" -v)
