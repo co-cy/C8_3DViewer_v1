@@ -1,6 +1,6 @@
 CC := gcc
 CFLAGS := -c -std=c11
-FLAGS := -Wall -Wextra  -g -std=c11 -lcheck --coverage  # -fanalyzer
+FLAGS := -Wall -Wextra -Werror -g -std=c11 -lcheck --coverage -fsanitize=address
 
 # Thanks to Job Vranish (https://spin.atomicobject.com/2016/08/26/makefile-c-projects/)
 TARGET_EXEC := final_program
@@ -10,7 +10,7 @@ SRC_DIRS := ..
 
 # Find all the C and C++ files we want to compile
 # Note the single quotes around the * expressions. Make will incorrectly expand these otherwise.
-SRCS := main.c scale.c rotate.c move.c parser.c ../struct/object3/create.c ../struct/object3/free.c ../parser/core.c ../struct/object3/transformations/move.c ../struct/object3/transformations/rotate.c ../struct/object3/transformations/scale.c ../struct/vector3/add.c ../struct/vector3/rotate.c
+SRCS := main.c scale.c rotate.c move.c parser.c ../struct/object3/create.c ../struct/object3/update.c ../struct/object3/free.c ../parser/core.c ../struct/object3/transformations/move.c ../struct/object3/transformations/rotate.c ../struct/object3/transformations/scale.c ../struct/vector3/add.c ../struct/vector3/rotate.c
 
 # String substitution for every C/C++ file.
 # As an example, hello.cpp turns into ./build/hello.cpp.o

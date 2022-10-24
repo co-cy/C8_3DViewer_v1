@@ -47,11 +47,11 @@ object3_t* parse_object3_from_obj_file(const char* filename) {
     exit(LOW_MEMORY);
   }
 
-  for (int i = 0; i < new_object->list_origin_vertex3.size ; i++) {
+  for (unsigned long i = 0; i < new_object->list_origin_vertex3.size ; i++) {
     new_object->list_vertex3.vertex3[i] = new_object->list_origin_vertex3.vertex3[i];
   }
 
-  for (int i = 0; i < new_object->list_origin_polygon.size ; i++) {
+  for (unsigned long i = 0; i < new_object->list_origin_polygon.size ; i++) {
     new_object->list_polygon.polygons[i] = new_object->list_origin_polygon.polygons[i];
   }
 
@@ -77,7 +77,10 @@ void parse_size_object3_from_obj_file(FILE* file, object3_t* object3) {
 
   object3->list_origin_vertex3.vertex3 =
       calloc(object3->list_origin_vertex3.size, sizeof(double));
-  if (!object3->list_origin_vertex3.vertex3) exit(LOW_MEMORY);
+  if (!object3->list_origin_vertex3.vertex3) {
+    free_object3(&object3);
+    exit(LOW_MEMORY);
+  }
 
   object3->list_origin_polygon.polygons =
       calloc(object3->list_origin_polygon.size, sizeof(int));
