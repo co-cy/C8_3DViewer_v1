@@ -83,7 +83,7 @@ void MyQOpenGLWidget::paintGL() {
       glFrustum(-1, 1, -1, 1, 0.8f, 3);  // задает для перспективной проекции
       glTranslatef(0, 0, -1.4);
     } else {
-      glOrtho(-10, 10, -10, 10, -100.0f, 100.0f);
+      glOrtho(-1, 1, -1, 1, -10000.0f, 10000.0f);
     }
 
     glVertexPointer(

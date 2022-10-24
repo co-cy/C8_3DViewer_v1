@@ -13,14 +13,14 @@ install:
 
 
 .PHONY: uninstall
-uninstall:
+uninstall: clean
 	-rm -rf build
 
 
 .PHONY: clean
-clean: install
-	cd build && make clean && cd ..
-	cd tests && make clean && cd ..
+clean:
+	-cd build && make clean && cd ..
+	-cd tests && make clean && cd ..
 
 
 .PHONY: dvi

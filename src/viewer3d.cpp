@@ -365,9 +365,12 @@ void Viewer3D::updateRotate(QPoint shift) {
   //  vector3_rotate(&ang, this->current_obj3->rotate);
 
   this->ignore_event = true;
-  this->ui->rotate_x_spin->setValue(this->ui->rotate_x_spin->value() + ang.x);
-  this->ui->rotate_y_spin->setValue(this->ui->rotate_y_spin->value() + ang.y);
-  this->ui->rotate_z_spin->setValue(this->ui->rotate_z_spin->value() + ang.z);
+  this->ui->rotate_x_spin->setValue(
+      fmod(this->ui->rotate_x_spin->value() + ang.x, 360));
+  this->ui->rotate_y_spin->setValue(
+      fmod(this->ui->rotate_y_spin->value() + ang.y, 360));
+  this->ui->rotate_z_spin->setValue(
+      fmod(this->ui->rotate_z_spin->value() + ang.z, 360));
   this->ignore_event = false;
 
   object3_rotate(
