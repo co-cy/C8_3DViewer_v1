@@ -15,7 +15,7 @@
 // Include custom library
 
 
-#define EPS 1e-7
+#define EPS 1e-6
 
 long double get_EPS(long double true_result, long double result);
 long double get_random(long double start, long double stop);
