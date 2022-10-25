@@ -426,6 +426,7 @@ void Viewer3D::saveGifImage() {
   timer->start(1000 / gifFps);
 
   this->ui->gif_button->setEnabled(false);
+  this->ui->gif_label->setText("Запись gif...");
 }
 
 void Viewer3D::oneGif() {
@@ -451,6 +452,7 @@ void Viewer3D::oneGif() {
     delete timer;
 
     this->ui->gif_button->setEnabled(true);
+    this->ui->gif_label->setText("");
   }
   startTime += 1000 / gifFps;
 }

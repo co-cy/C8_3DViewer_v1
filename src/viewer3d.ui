@@ -46,6 +46,9 @@
         </item>
         <item>
          <widget class="QPushButton" name="jpeg_button">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
           <property name="text">
            <string>jpeg</string>
           </property>
@@ -53,6 +56,9 @@
         </item>
         <item>
          <widget class="QPushButton" name="bmp_button">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
           <property name="text">
            <string>bmp</string>
           </property>
@@ -60,8 +66,18 @@
         </item>
         <item>
          <widget class="QPushButton" name="gif_button">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
           <property name="text">
            <string>gif</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="gif_label">
+          <property name="text">
+           <string/>
           </property>
          </widget>
         </item>
@@ -133,13 +149,16 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>285</width>
-         <height>899</height>
+         <width>312</width>
+         <height>941</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <widget class="QPushButton" name="load_file">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
           <property name="text">
            <string>Загрузить файл</string>
           </property>
@@ -614,6 +633,9 @@
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
              <widget class="QRadioButton" name="orthographic">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
               <property name="text">
                <string>Орфографический</string>
               </property>
@@ -624,6 +646,9 @@
             </item>
             <item>
              <widget class="QRadioButton" name="perspective">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
               <property name="text">
                <string>Перспектива</string>
               </property>
@@ -662,6 +687,9 @@
             </item>
             <item>
              <widget class="QComboBox" name="edges_type_combo">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
               <item>
                <property name="text">
                 <string>Нет</string>
@@ -842,6 +870,9 @@
             </item>
             <item>
              <widget class="QComboBox" name="vertex_type_combo">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
               <item>
                <property name="text">
                 <string>Нет</string>
@@ -996,7 +1027,7 @@
      <x>0</x>
      <y>0</y>
      <width>1173</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
