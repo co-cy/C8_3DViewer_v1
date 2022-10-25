@@ -80,10 +80,10 @@ void MyQOpenGLWidget::paintGL() {
     //          проекции glTranslatef(0, 0, -1.4);
     //      }
     if (perspective) {
-      glFrustum(-1, 1, -1, 1, 0.8f, 3);  // задает для перспективной проекции
-      glTranslatef(0, 0, -1.4);
+      glFrustum(-1, 1, -1, 1, 2, 12);  // задает для перспективной проекции
+      glTranslatef(0, 0, -8);
     } else {
-      glOrtho(-1, 1, -1, 1, -10000.0f, 10000.0f);
+      glOrtho(-1, 1, -1, 1, -1000.0f, 1000.0f);
     }
 
     glVertexPointer(
